@@ -1,2 +1,2 @@
 # CamelotProject
-# Reaves Hogg, 
+# Benjamin Hogg
