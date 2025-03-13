@@ -29,5 +29,6 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new SetPosition(player, cottage)).add(new Face(bandit, player)).add(new Draw(bandit, sword))
 		.add(new SetCameraFocus(player)).add(new ShowMenu());
 		
+		//THIS IS A TEST PUSH 
 	}
 }
