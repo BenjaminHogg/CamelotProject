@@ -1,6 +1,7 @@
 package myclassproject.mystorygraph;
 
 import java.util.List;
+import static myclassproject.mystorygraph.MyStoryEntities.*;
 
 import com.storygraph.*;
 
