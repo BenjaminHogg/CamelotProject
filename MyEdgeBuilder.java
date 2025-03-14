@@ -22,6 +22,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	 * The method should add the edges of the node one by one. 
 	 * These methods must have a BuilderMethod annotation.
 	 */
+	//Benjamin Hogg
 	@BuilderMethod
 	public void rootEdges() {
 		var root = get(NodeLabels.root.toString());
