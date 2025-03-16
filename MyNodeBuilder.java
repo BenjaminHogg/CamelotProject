@@ -90,3 +90,62 @@ public class MyNodeBuilder extends NodeBuilder {
 		dontGowR.add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
 	}
 }
+	//Joseph Maggio
+	@BuilderMethode
+	public void Armory(){
+	var armoryNode = get(NodeLabels.armory.toString());
+    	armoryNode.clearSequence();
+    
+    	// Set the scene
+    	armoryNode.add(new HideMenu())
+              .add(new EnableInput())
+              .add(new FadeIn())
+              .add(new NarrationSequence("In the armory, your ally explains to you that there are many different ways you can approach a swordfight. "
+                + "He says that you can either be a tank, focusing your style on defense, armor, and shields, "
+                + "you can be an assassin, focusing on dexterity and agility, "
+                + "or you can be what he refers to as a warlord, with a more aggressive fighting style and putting your trust in your violent weaponry."));
+
+    	// Present choices
+    	armoryNode.add(new DialogSequence(Ally, player, 
+            List.of("Which path will you take?"), 
+            List.of("Tank", "Assassin", "Warlord")));
+	}
+
+	//Joseph Maggio
+	@BuilderMethod
+	public void fletcher() {
+    		var fletcherNode = get(NodeLabels.fletcher.toString());
+    		fletcherNode.clearSequence();
+    
+    		// Set the scene
+    		fletcherNode.add(new HideMenu())
+                	.add(new EnableInput())
+                	.add(new FadeIn())
+                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
+                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
+                    	+ "He allows you to choose what to tackle first."));
+
+    	// Present choices
+    	fletcherNode.add(new DialogSequence(Fletcher, player, 
+            	List.of("What do you want to learn first?"), 
+            	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
+	}
+	//Joseph Maggio
+	@BuilderMethod
+	public void warlordWeaponSelection() {
+    		var warlordWeaponNode = get(NodeLabels.warlordWeaponSelection.toString());
+    		warlordWeaponNode.clearSequence();
+    
+   		 // Set the scene
+   		 warlordWeaponNode.add(new HideMenu())
+                     	.add(new EnableInput())
+                     	.add(new FadeIn())
+                     	.add(new NarrationSequence("As a warlord, you rely on your intense weaponry. "
+                         	+ "The armorer shows you a rack of large weapons—some exotic, some familiar, but all terrifying. "
+                         	+ "Pick your weapon:"));
+
+    		// Present weapon choices
+    		warlordWeaponNode.add(new DialogSequence(Armorer, player, 
+           	List.of("Which weapon will you wield?"), 
+            	List.of("War Axe", "Chain Mace", "What even is that?")));
+	}
