@@ -89,7 +89,63 @@ public class MyNodeBuilder extends NodeBuilder {
 		dontGowR.clearSequence();
 		dontGowR.add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
 	}
-}
+		//Christian Maron
+	@BuilderMethod
+	public void theDarkTable() {
+	var darkTable = get(NodeLabels.darkTable.toString());
+	darkTable.add(new CreateAll(List.of(darTable)))
+	.add(new CreateCharacterSequence(bandit1))
+	.add(new CreateCharacterSequence(bandit2))
+	.add(new CreateCharacterSequence(bandit3))
+	.add(new SetPosition(bandit1,darTable, "FrontLeftChair"))
+	.add(new SetPosition(bandit2,darTable, "FrontRightChair"))
+	.add(new SetPosition(bandit3, darTable, "BackLeftChair"))
+	.add(new SetPosition(player, darTable, "LeftChair"))
+	.add(new DialogSequence(bandit1, player,
+	List.of("We are tired of how the kingdom is" +
+	"We need you to bring the head of one prominent figure."
+	+ "The choice is yours.")))
+		
+		
+	}
+	//Christian Maron
+	@BuilderMethod
+	public void arthurChoice() {
+	var arthur = get(NodeLabels.arthur.toString())
+	arthur.add(new DialogSequence(bandit1, player, 
+	List.of("Arthur has the famed blade Excalibur." +
+	"If you wish to kill him, a swordright is hopeless."  +
+	"You must take him down from range." +
+	"In order to do this, you must become skilled with a bow." +
+	"You must obtain a bow from the most famed fletcher, but this task is only the beggining." )));
+		
+	}
+	//Christian Maron
+	@BuilderMethod
+	public void lancelotChoice() {
+	var lancelot = get(NodeLabels.lancelot.toString())
+	lancelot.add(new DialogSequence(bandit2, player,
+	List.of("Lancelot is Arthurs right hand man. "
+	+ "If you can take him out, Arthur is surely done for. "
+	+ "To defeat him, you must become a skilled swordsman. "
+	+ "Head to the armory and pick your gear")));
+	}
+	//Christian Maron
+	@BuilderMethod
+	public void merlinChoice() {
+	var merlin = get(NodeLabels.merlin.toString())
+	merlin.add(new DialogSequence(bandit3, player, 
+	"To kill merlin, you must learn the art of wizardry. "
+	+ "Merlin will not be slain by a sword, but can be killed by magic. "
+	+ "You must devise a plan to do this. "
+	+ "How will you take out merlin?"));
+	}
+
+	
+	
+	
+	
+	
 	//Joseph Maggio
 	@BuilderMethode
 	public void Armory(){
@@ -149,3 +205,4 @@ public class MyNodeBuilder extends NodeBuilder {
            	List.of("Which weapon will you wield?"), 
             	List.of("War Axe", "Chain Mace", "What even is that?")));
 	}
+}
