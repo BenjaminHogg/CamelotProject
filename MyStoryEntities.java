@@ -17,4 +17,10 @@ public final class MyStoryEntities {
 	public static final Item bottle = new Item("bottle", ItemTypes.bottle);
 	public static final Place city = new Place("city", PlaceTypes.City);
 
+	//Christian Maron
+	public static final Characters bandit1 = new Characters("bandit1", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Characters bandit2 = new Characters("bandit2", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Characters bandit3 = new Characters("bandit3", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Place darTable = new Place("DarTable", PlaceTypes.DiningRoom);
+
 }
