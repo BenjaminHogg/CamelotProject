@@ -54,7 +54,50 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var dontGoChoice = new DialogChoice("No I have no idea what you're talking about. Leave me be.");
 		node.add(new Edge(dontGoChoice, nextNode1));
 		//Other edge goes to Dark Table
-		//var nextNode2 = get(NodeLabels.)
+		//Christian Maron
+		var nextNode2 = get(NodeLabels.darkTable.toString());
+		var joinChoice = new DialogChoice("I'll join");
+		node.add(new Edge(joinChoice, nextNode2));
+	}
+	@BuilderMethod
+	public void attackRecruiterEdges() {
+		var node = get(NodeLabels.atkRec.toString());
+		var nextNode1 = get(NodeLabels.darkTable.toString());
+		var attackChoice = new DialogChoice("You have been taken by force.");
+		node.add(new Edge(attackChoice, nextNode1));
+	}
+
+	@BuilderMethod
+	public void theDarkTableEdges() {
+		var node = get(NodeLabels.darkTable.toString());
+		
+		var nextNode1 = get(NodeLabels.arthur.toString());
+		var arthurChoice = new DialogChoice("Challenge Arthur.");
+		node.add(new Edge(arthurChoice, nextNode1));
+		
+		var nextNode2 = get(NodeLabels.lancelot.toString());
+		var lancelotChoice = new DialogChoice("Challenge Lancelot.");
+		node.add(new Edge(lancelotChoice, nextNode2));
+		
+		var nextNode3 = get(NodeLabels.merlin.toString());
+		var merlinChoice = new DialogChoice("Challenge Merlin.");
+		node.add(new Edge(merlinChoice, nextNode3));
+		
+		//Joseph Maggio
+		var armoryNode = get(NodeLabels.armory.toString());
+    		var armoryChoice = new DialogChoice("Visit the Armory.");
+    		node.add(new Edge(armoryChoice, armoryNode));
+
+    		var fletcherNode = get(NodeLabels.fletcher.toString());
+    		var fletcherChoice = new DialogChoice("Visit the Fletcher.");
+   		node.add(new Edge(fletcherChoice, fletcherNode));
+
+    		var warlordWeaponNode = get(NodeLabels.warlordWeaponSelection.toString());
+    		var warlordWeaponChoice = new DialogChoice("Select Your Warlord Weapon.");
+    		node.add(new Edge(warlordWeaponChoice, warlordWeaponNode));
+	}	
+		
+		
 	}
 	
 }
