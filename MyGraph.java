@@ -3,10 +3,10 @@ package myclassproject.mystorygraph;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.storygraph.Graph;
-import com.storygraph.NodeBuilder;
+import com.storygraph.MyGraph;
+import com.storygraph.MyNodeBuilder;
 
-import myclassproject.questexample.NodeLabels;
+import myclassproject.questexample.MyNodeLabels;
 
 public class MyGraph extends Graph {
 	/**

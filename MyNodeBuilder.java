@@ -3,6 +3,8 @@ package myclassproject.mystorygraph;
 import java.util.List;
 import static myclassproject.mystorygraph.MyStoryEntities.*;
 
+import com.actions.*;
+import com.sequences.*;
 import com.storygraph.*;
 
 public class MyNodeBuilder extends NodeBuilder {
@@ -23,10 +25,10 @@ public class MyNodeBuilder extends NodeBuilder {
 		//root.add(new CreateAll(List.of(cottage, town, sword)));
 		
 		//Benjamin Hogg
-		var root = get(NodeLabels.root.toString());
+		var root = get(MyNodeLabels.root.toString());
 		root.clearSequence();
 		root.add(new CreateAll(List.of(city, bottle)))
-		.add(new.SetTitle("The Dark Table"))
+		.add(new SetTitle("The Dark Table"))
 		.add(new CreateCharacterSequence(player))
 		.add(new SetPosition(player, city, "Alley1"))
 		.add(new Unpocket(player, bottle))
@@ -48,7 +50,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Benjamin Hogg
 	@BuilderMethod
 	public void streetStartNarration() {
-		var streetNar = get(NodeLabels.streetNar.toString());
+		var streetNar = get(MyNodeLabels.streetNar.toString());
 		streetNar.add(new FadeOut()).add(new HideMenu()).add(new FadeIn())
 		.add(new HideNarration()).add(new FadeIn()).add(new NarrationSequence("The streets of Camelot are filled with poverty and crime. The Knights of the Round Table and their King, Arthur, have put the city in this sad state. "
 				+ "You wake up in a dimly lit alley in a drunken stupor. You are in rough shape, and your breath smells of the half consumed bottle "
@@ -57,17 +59,17 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Benjamin Hogg
 	@BuilderMethod
 	public void manAppears() {
-		var manApp = get(NodeLabels.manApp.toString());
+		var manApp = get(MyNodeLabels.manApp.toString());
 		manApp.add(new HideMenu()).add(new EnableInput()).add(new HideNarration())
-		.add(new WalkTo(Recruiter, "Alley2")).add(new Face(Recruiter, player))
+		.add(new WalkTo(Recruiter, city, "Alley2")).add(new Face(Recruiter, player))
 		.add(new Take(Recruiter, bottle, player))
 		.add(new DialogSequence(Recruiter, player,List.of("Look at you you're pathetic. Give me that."),
-				List.of("ATTACK THE MAN","What do you want?"));
+				List.of("ATTACK THE MAN","What do you want?")));
 	}
 	//Benjamin Hogg
 	@BuilderMethod
 	public void askRecruiter() {
-		var ask = get(NodeLabels.ask.toString());
+		var ask = get(MyNodeLabels.ask.toString());
 		ask.clearSequence();
 		ask.add(new HideDialog()).add(new DialogSequence(Recruiter, player, 
 				List.of("I know who you are. I know of your past. I need your help. We can stop the cycle of this kingdom. Will you join me?"), 
@@ -76,7 +78,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Benjamin Hogg
 	@BuilderMethod
 	public void attackRecruiter() {
-		var atkRec = get(NodeLabels.atkRec.toString());
+		var atkRec = get(MyNodeLabels.atkRec.toString());
 		atkRec.clearSequence();
 		atkRec.add(new Attack(player, Recruiter, true)).add(new Attack(Recruiter, player, false))
 		.add(new Die(player)).add(new FadeOut());
@@ -85,14 +87,14 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Benjamin Hogg
 	@BuilderMethod
 	public void dontGoWithRecruiter() {
-		var dontGowR = get(NodeLabels.dontGowR.toString());
+		var dontGowR = get(MyNodeLabels.dontGowR.toString());
 		dontGowR.clearSequence();
 		dontGowR.add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
 	}
 		//Christian Maron
 	@BuilderMethod
 	public void theDarkTable() {
-	var darkTable = get(NodeLabels.darkTable.toString());
+	var darkTable = get(MyNodeLabels.darkTable.toString());
 	darkTable.add(new CreateAll(List.of(darTable)))
 	.add(new CreateCharacterSequence(bandit1))
 	.add(new CreateCharacterSequence(bandit2))
@@ -104,36 +106,36 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new DialogSequence(bandit1, player,
 	List.of("We are tired of how the kingdom is" +
 	"We need you to bring the head of one prominent figure."
-	+ "The choice is yours.")))
+	+ "The choice is yours."), null));
 		
 		
 	}
 	//Christian Maron
 	@BuilderMethod
 	public void arthurChoice() {
-	var arthur = get(NodeLabels.arthur.toString())
+	var arthur = get(MyNodeLabels.arthur.toString());
 	arthur.add(new DialogSequence(bandit1, player, 
 	List.of("Arthur has the famed blade Excalibur." +
 	"If you wish to kill him, a swordright is hopeless."  +
 	"You must take him down from range." +
 	"In order to do this, you must become skilled with a bow." +
-	"You must obtain a bow from the most famed fletcher, but this task is only the beggining." )));
+	"You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), null));
 		
 	}
 	//Christian Maron
 	@BuilderMethod
 	public void lancelotChoice() {
-	var lancelot = get(NodeLabels.lancelot.toString())
+	var lancelot = get(MyNodeLabels.lancelot.toString());
 	lancelot.add(new DialogSequence(bandit2, player,
 	List.of("Lancelot is Arthurs right hand man. "
 	+ "If you can take him out, Arthur is surely done for. "
 	+ "To defeat him, you must become a skilled swordsman. "
-	+ "Head to the armory and pick your gear")));
+	+ "Head to the armory and pick your gear"), null));
 	}
 	//Christian Maron
 	@BuilderMethod
 	public void merlinChoice() {
-	var merlin = get(NodeLabels.merlin.toString())
+	var merlin = get(MyNodeLabels.merlin.toString())
 	merlin.add(new DialogSequence(bandit3, player, 
 	"To kill merlin, you must learn the art of wizardry. "
 	+ "Merlin will not be slain by a sword, but can be killed by magic. "
@@ -147,9 +149,9 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	//Joseph Maggio
-	@BuilderMethode
+	@BuilderMethod
 	public void Armory(){
-	var armoryNode = get(NodeLabels.armory.toString());
+	var armoryNode = get(MyNodeLabels.armory.toString());
     	armoryNode.clearSequence();
     
     	// Set the scene
@@ -170,7 +172,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Joseph Maggio
 	@BuilderMethod
 	public void fletcher() {
-    		var fletcherNode = get(NodeLabels.fletcher.toString());
+    		var fletcherNode = get(MyNodeLabels.fletcher.toString());
     		fletcherNode.clearSequence();
     
     		// Set the scene
@@ -189,7 +191,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Joseph Maggio
 	@BuilderMethod
 	public void warlordWeaponSelection() {
-    		var warlordWeaponNode = get(NodeLabels.warlordWeaponSelection.toString());
+    		var warlordWeaponNode = get(MyNodeLabels.warlordWeaponSelection.toString());
     		warlordWeaponNode.clearSequence();
     
    		 // Set the scene
