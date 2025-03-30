@@ -246,7 +246,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	@BuilderMethod
 	public void theDuel() {
-		var duel = get(MyNodeLabels.expDuel.toString());
+		var duel = get(MyNodeLabels.theDuel.toString());
 		duel.add(new Draw(lancelot, sword)).add(new Draw(player, halberd)).add(new SetNight())
 		.add(new Attack(player, lancelot, true)).add(new Attack(lancelot, player, false)).add(new Attack(player, lancelot, false))
 		.add(new Die(lancelot));
@@ -312,8 +312,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void assassinWeaponSelection() {
 		var assassinWeaponNode = get(MyNodeLabels.assassinWeaponNode.toString());
 		assassinWeaponNode.clearsequence();
-		assassinWeaponNode.add(new WalkTo(Ally, armory, "Backdoor")).add(new Unpocket(Ally, dagger))
-		.add(new PlayerInteraction(takeDagger, Ally, PlayerInteraction.Icons, "Talk to armorer"));
+		assassinWeaponNode.add(new WalkTo(Ally, armory, "Backdoor")).add(new Give(Ally, dagger, player));
 	}
 	//Maybe add a node or something where the armorer explains the mercenary eventually
 	@BuilderMethod

@@ -97,9 +97,125 @@ public class MyEdgeBuilder extends NodeBuilder {
     		var warlordWeaponNode = get(MyNodeLabels.warlordWeaponSelection.toString());
     		var warlordWeaponChoice = new DialogChoice("Select Your Warlord Weapon.");
     		node.add(new Edge(warlordWeaponChoice, warlordWeaponNode));
-	}	
-		
-		
+	}
+	//Benjamin Hogg	
+	@BuilderMethod
+	public void WarlordEdges() {
+		var node = get(MyNodeLabels.warlordWeaponNode.toString());
+		var nextNode1 = get(MyNodeLabels.blunderbuss.toString());
+		var nextNode2 = get(MyNodeLabels.waraxe.toString());
+		var nextNode3 = get(MyNodeLabels.chainmace.toString());
+		var blunderChoice = new DialogChoice("What even is that?");
+		var axeChoice = new DialogChoice("War Axe");
+		var maceChoice = new DialogChoice("Chain Mace");
+		node.add(new Edge(blunderChoice, nextNode1));
+		node.add(new Edge(axeChoice, nextNode2));
+		node.add(new Edge(maceChoice, nextNode3));
 	}
 	
+	@BuilderMethod
+	public void BlunderbussEdges() {
+		var node = get(MyNodeLabels.blunderbuss.toString());
+		var nextNode1 = get(MyNodeLabels.ambushPlan.toString());
+		var ambushPlanChoice = new PlayerInteraction(openDoor, Furniture(armory, "BackDoor"), Icons.door, "Leave");
+		node.add(new Edge(ambushPlanChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void AxeEdges() {
+		var node = get(MyNodeLabels.waraxe.toString());
+		var nextNode1 = get(MyNodeLabels.ambushPlan.toString());
+		var ambushPlanChoice = new PlayerInteraction(openDoor, Furniture(armory, "BackDoor"), Icons.door, "Leave");
+		node.add(new Edge(ambushPlanChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void MaceEdges() {
+		var node = get(MyNodeLabels.chainmace.toString());
+		var nextNode1 = get(MyNodeLabels.ambushPlan.toString());
+		var ambushPlanChoice = new PlayerInteraction(openDoor, Furniture(armory, "BackDoor"), Icons.door, "Leave");
+		node.add(new Edge(ambushPlanChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void AmbushPlanEdges() {
+		var node = get(MyNodeLabels.ambushPlan.toString());
+		var nextNode1 = get(MyNodeLabels.ambush.toString());
+		var ambushChoice = new PlayerInteraction(openDoor, Furniture(darTable, "Door"), Icons.door, "Leave");
+		node.add(new Edge(ambushChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void AmbushEdges() {
+		var node = get(MyNodeLabels.ambush.toString());
+		var nextNode1 = get(MyNodeLabels.ambush2.toString());
+		var ambush2Choice = new PlayerInteraction(talkToLancelot, lancelot, Icons.talk, "Confront Lancelot");
+		node.add(new Edge(ambush2Choice, nextNode1));
+	}
+	@BuilderMethod
+	public void Ambush2Edges() {
+		var node = get(MyNodeLabels.ambush2.toString());
+		var nextNode1 = get(MyNodeLabels.returnToTable.toString());
+		var returnChoice = new PlayerInteraction(player, approachExit, Furniture(city, "NorthEnd"));
+		node.add(new Edge(returnChoice, nextNode1));
+	}
+	
+	@BuilerMethod
+	public void TankEdges() {
+		var node = get(MyNodeLabels.tankWeaponNode.toString());
+		var nextNode1 = get(MyNodeLabels.takeHal.toString());
+		var takeHalChoice = new PlayerInteraction(player, takeHalberd, Ally);
+		node.add(new Edge(takeHalChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void TakeHalEdges() {
+		var node = get(MyNodeLabels.takeHal.toString());
+		var nextNode1 = get(MyNodeLabels.expDuel.toString());
+		var expDuelChoice = new PlayerInteraction(openDoor, Furniture(armory, "BackDoor"), Icons.door, "Leave");
+		node.add(new Edge(expDuelChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void ExpDuelEdges() {
+		var node = get(MyNodeLabels.expDuel.toString());
+		var nextNode1 = get(MyNodeLabels.inMarket.toString());
+		var inMarketChoice = new PlayerInteraction(openDoor, Furniture(darTable, "Door"), Icons.door, "Leave");
+		node.add(new Edge(inMarketChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void InMarketEdges() {
+		var node = get(MyNodeLabels.inMarket.toString());
+		var nextNode1 = get(MyNodeLabels.theDuel.toString());
+		var theDuelChoice = new PlayerInteraction(talkToLancelot, lancelot, Icons.talk, "Confront Lancelot");
+		node.add(new Edge(theDuelChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void TheDuelEdges() {
+		var node = get(MyNodeLabels.theDuel.toString());
+		var nextNode1 = get(MyNodeLabels.duel.toString());
+		var duelChoice = new PlayerInteraction(player, approachExit, Furniture(ambushStreet, "Exit"));
+		node.add(new Edge(duelChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void AssassinEdges() {
+		var node = get(MyNodeLabels.assassinWeaponNode.toString());
+		var nextNode1 = get(MyNodeLabels.mercenary.toString());
+		var mercenaryChoice = new PlayerInteraction(openDoor, Furniture(armory, "BackDoor"), Icons.door, "Leave");
+		node.add(new Edge(mercenaryChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void MercenaryEdges() {
+		var node = get(MyNodeLabels.mercenary.toString());
+		var nextNode1 = get(MyNodeLabels.mercTraining.toString());
+		var mercTrainingChoice = new PlayerInteraction(talkToMercenary, mercenary, Icons.talk, "Confront Lancelot");
+		node.add(new Edge(mercTrainingChoice, nextNode1));
+	}
+	
+	@BuilderMethod public void MercTrainingEdges() {
+		var node = get(MyNodeLabels.mercTraining.toString());
+		var nextNode1 = get(MyNodeLabels.expDuel.toString());
+		var toDuelfromMerc = new PlayerInteraction(player, mercenaryCamp, "Exit");
+		node.add(new Edge(toDuelfromMerc, nextNode1));
+	}
 }
