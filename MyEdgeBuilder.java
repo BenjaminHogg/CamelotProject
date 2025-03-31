@@ -278,6 +278,129 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var nextNode1 = get(MyNodeLabels.returnToTable.toString());
 		var returnToDarkTable = new DialogChoice("Return to the Dark Table");
 		node.add(new Edge(returnToDarkTable, nextNode1));
-		
+
 		
 }
+	@BuilderMethod
+	public void fletcherEdges() {
+    		var fletcherNode = get(NodeLabels.fletcher.toString());
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var marksmanshipChoice = new DialogChoice("Marksmanship");
+    		fletcherNode.add(new Edge(marksmanshipChoice, marksmanshipNode));
+    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var agilityChoice = new DialogChoice("Agility and Stealth");
+    		fletcherNode.add(new Edge(agilityChoice, agilityNode));
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var craftingChoice = new DialogChoice("Crafting");
+    		fletcherNode.add(new Edge(craftingChoice, craftingNode));
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var arrowMakingChoice = new DialogChoice("Arrow Making");
+    		fletcherNode.add(new Edge(arrowMakingChoice, arrowMakingNode));
+}
+	public void arrowMakingEdges() {
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var craftingChoice = new DialogChoice("Crafting");
+    		arrowMakingNode.add(new Edge(craftingChoice, craftingNode));
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var marksmanshipChoice = new DialogChoice("Marksmanship");
+    		arrowMakingNode.add(new Edge(marksmanshipChoice, marksmanshipNode));
+   	 	var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var agilityChoice = new DialogChoice("Agility and Stealth");
+    		arrowMakingNode.add(new Edge(agilityChoice, agilityNode));
+    		var planNode = get(NodeLabels.thePlan.toString());
+    		var planChoice = new DialogChoice("(Must be done with all four skills) Devise your plan");
+    		arrowMakingNode.add(new Edge(planChoice, planNode));
+}	
+	public void craftingEdges() {
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var arrowChoice = new DialogChoice("Arrow Making");
+    		craftingNode.add(new Edge(arrowChoice, arrowMakingNode));
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var marksmanshipChoice = new DialogChoice("Marksmanship");
+    		craftingNode.add(new Edge(marksmanshipChoice, marksmanshipNode));
+    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var agilityChoice = new DialogChoice("Agility and Stealth");
+    		craftingNode.add(new Edge(agilityChoice, agilityNode));
+    		var planNode = get(NodeLabels.thePlan.toString());
+    		var planChoice = new DialogChoice("(Must be done with all four skills) Devise your plan");
+    		craftingNode.add(new Edge(planChoice, planNode));
+}
+	public void agilityAndStealthEdges() {
+    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var marksmanshipChoice = new DialogChoice("Marksmanship");
+    		agilityNode.add(new Edge(marksmanshipChoice, marksmanshipNode));
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var craftingChoice = new DialogChoice("Crafting");
+    		agilityNode.add(new Edge(craftingChoice, craftingNode));
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var arrowChoice = new DialogChoice("Arrow Making");
+    		agilityNode.add(new Edge(arrowChoice, arrowMakingNode));
+    		var planNode = get(NodeLabels.thePlan.toString());
+    		var planChoice = new DialogChoice("(Must be done with all four skills) Devise your plan");
+    		agilityNode.add(new Edge(planChoice, planNode));
+}
+	@BuilderMethod
+	public void marksmanshipEdges() {
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var arrowChoice = new DialogChoice("Arrow Making");
+    		marksmanshipNode.add(new Edge(arrowChoice, arrowMakingNode));
+    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var agilityChoice = new DialogChoice("Agility and Stealth");
+   		marksmanshipNode.add(new Edge(agilityChoice, agilityNode));
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var craftingChoice = new DialogChoice("Crafting");
+    		marksmanshipNode.add(new Edge(craftingChoice, craftingNode));
+    		var planNode = get(NodeLabels.thePlan.toString());
+    		var planChoice = new DialogChoice("(Must be done with all four skills) Devise your plan");
+    		marksmanshipNode.add(new Edge(planChoice, planNode));
+}
+
+	@BuilderMethod
+	public void thePlanEdges() {
+    		var planNode = get(NodeLabels.thePlan.toString());
+    		var climbNode = get(NodeLabels.insideTheCastleHalls.toString());
+    		var climbChoice = new DialogChoice("Climb the wall");
+    		planNode.add(new Edge(climbChoice, climbNode));
+    		var attendNode = get(NodeLabels.weddingParty.toString());
+    		var attendChoice = new DialogChoice("Attend the party");
+    		planNode.add(new Edge(attendChoice, attendNode));
+}
+
+	@BuilderMethod
+	public void insideTheCastleHallsEdges() {
+    		var castleNode = get(NodeLabels.insideTheCastleHalls.toString());
+    		var towerNode = get(NodeLabels.fromTheArcherTower.toString());
+    		var towerChoice = new DialogChoice("From the archer tower");
+    		castleNode.add(new Edge(towerChoice, towerNode));
+}
+
+	@BuilderMethod
+	public void fromTheArcherTowerEdges() {
+    		var towerNode = get(NodeLabels.fromTheArcherTower.toString());
+    		var returnNode = get(NodeLabels.darkTable.toString());
+    		var returnChoice = new DialogChoice("Return to the Dark Table");
+    		towerNode.add(new Edge(returnChoice, returnNode));
+}
+
+	@BuilderMethod
+	public void weddingPartyEdges() {
+    		var weddingNode = get(NodeLabels.weddingParty.toString());
+    		var archeryGameNode = get(NodeLabels.archeryGame.toString());
+   		var gameChoice = new DialogChoice("The archery game");
+    		weddingNode.add(new Edge(gameChoice, archeryGameNode));
+}
+	@BuilderMethod
+	public void archeryGameEdges() {
+    		var archeryNode = get(NodeLabels.archeryGame.toString());
+    		var returnNode = get(NodeLabels.darkTable.toString());
+    		var returnChoice = new DialogChoice("Return to the Dark Table");
+    		archeryNode.add(new Edge(returnChoice, returnNode));
+}
+
+	
+
+			
