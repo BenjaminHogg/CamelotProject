@@ -348,7 +348,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod 	
         public void PotionApprenticeship(){
 		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship.toString());
-		potionApprencticeship.add(new CreateCharacterSequence(potionWarlock)
+		potionApprencticeship.add(new CreateCharacterSequence(potionWarlock))
 		.add(new CreateAll(List.of(potion,potionRoom)))
 		.add(new SetPosition(player, potionRoom, "Bar"))
 		.add(new SetPosition(darkArtsWarlock, potionRoom, "Backdoor"))
@@ -357,7 +357,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod 		}
 	public void DarkArtsApprenticeship(){
 		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship.toString());
-		darkArtsApprenticehip.add(new CreateCharacterSequence(darkArtsWarlock)
+		darkArtsApprenticehip.add(new CreateCharacterSequence(darkArtsWarlock))
 		.add(new CreateAll(List.of(wand,darkArtsRoom)))
 		.add(new SetPosition(player, darkArtsRoom, "Bar"))
 		.add(new SetPosition(darkArtsWarlock, darkArtsRoom, "Backdoor"))
@@ -378,7 +378,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod 
 	public void DarkArtsBattle(){
 		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle.toString());
-		darkArtsBattle.add(new CreateAll(List.of(darkArtsBattleArea)
+		darkArtsBattle.add(new CreateAll(List.of(darkArtsBattleArea)))
 		.add(new CreateCharacterSequence(merlin))
 		.add(new SetPosition(merlin, darkArtsBattleArea, "Well"))
 		.add(new SetPosition(player, darkArtsBattleArea, "DirtPile"))
