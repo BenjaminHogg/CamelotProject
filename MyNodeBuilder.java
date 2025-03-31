@@ -342,23 +342,29 @@ public class MyNodeBuilder extends NodeBuilder {
 		potion.add(
 			}
 	public void DarkArts(){
-		var darkArts = get(MyNodeLabels.darkArts.toString())
+		var darkArts = get(MyNodeLabels.darkArts.toString());
+		darkArts.add(
 			}
 		
         public void PotionApprenticeship(){
-		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship)
+		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship.toString());
+		potionApprencticeship.add(
 			}
 	public void DarkArtsApprenticeship(){
-		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship)
+		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship.toString());
+		darkArtsApprenticehip.add(
 			}
 	public void PotionBattle(){
-		var potionBattle = get(MyNodeLabels.potionBattle)
+		var potionBattle = get(MyNodeLabels.potionBattle.toString());
+		potionBattle.add(
 			}
 	public void DarkArtsBattle(){
-		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle)
+		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle.toString());
+		darkArtsBattle.add(
 			}
 	public void MerlinDeath(){
-		var merlinDeath = get(MyNodeLabels.merlinDeath)
+		var merlinDeath = get(MyNodeLabels.merlinDeath.toString());
+		merlinDeath.add(
 			}
 	
 		
