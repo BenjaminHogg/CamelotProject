@@ -218,4 +218,9 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var toDuelfromMerc = new PlayerInteraction(player, mercenaryCamp, "Exit");
 		node.add(new Edge(toDuelfromMerc, nextNode1));
 	}
+	//Christian Maron
+	@BuilderMethod
+	public void PotionEdge(){
+		var node = get(MyNodeLabels.potion.toString());
+		var nextNode1 = get(MyNodeLabels.
 }
