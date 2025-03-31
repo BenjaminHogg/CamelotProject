@@ -236,7 +236,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var node = get(MyNodeLabels.potion.toString());
 		var nextNode1 = get(MyNodeLabels.potionApprenticeship.toString());
 		var potionApprencticeshipNode = new DialogChoice("Go to your apprenticeship".);
-		node.add(new Edge(potionApprencticeshipNode, nextNode1);
+		node.add(new Edge(potionApprencticeshipNode, nextNode1));
 		
 	}
 	@BuilderMethod
@@ -244,40 +244,40 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var node = get(MyNodeLabels.darkArts.toString());
 		var nextNode1 = get(MyNodeLabels.darkArtsApprenticeship.toString());
 		var darkArtsApprencticeshipNode = new DialogChoice("Go to your apprenticeship.");
-		node.add(new Edge(darkArtsApprencticeshipNode, nextNode1);
+		node.add(new Edge(darkArtsApprencticeshipNode, nextNode1));
 	}
 	@BuilderMethod
 	public void ArtsApprenticeshipEdge(){
 		var node = get(MyNodeLabels.darkArtsApprenticeship.toString());
 		var nextNode1 = get(MyNodeLabels.darkArtsBattle.toString());
 		var goToDarkArtsBattle = new DialogChoice("Go to the battle.");
-		node.add(new Edge(goToDarkArtsBattle, nextNode1);
+		node.add(new Edge(goToDarkArtsBattle, nextNode1));
 	}
 	@BuilderMethod
 	public void PotionApprenticeshipEdge(){
 		var node = get(MyNodeLabels.potionApprenticeship.toString());
 		var nextNode1 = get(MyNodeLabels.potionBattle.toString());
 		var goToPotionBattle = new DialogChoice("Go to the battle.");
-		node.add(new Edge(goToPotionBattle, nextNode1);
+		node.add(new Edge(goToPotionBattle, nextNode1));
 	}
 	@BuilderMethod
 	public void PotionBattleEdge(){
 		var node = get(MyNodeLabels.potionBattle.toString());
 		var nextNode1 = get(MyNodeLabels.merlinDeath.toString());
 		var checkMerlin = new DialogChocie("Make sure that he is dead.");
-		node.add(new Edge(checkMerlin, nextNode1);
+		node.add(new Edge(checkMerlin, nextNode1));
 		@BuilderMethod
 	public void DarkArtsBattleEdge(){
 		var node = get(MyNodeLabels.darkArtsBattle.toString());
 		var nextNode1 = get(MyNodeLabels.merlinDeath.toString());
 		var checkMerlin = new DialogChocie("Make sure that he is dead.");
-		node.add(new Edge(checkMerlin, nextNode1);
+		node.add(new Edge(checkMerlin, nextNode1));
 	@BuilderMethod
 	public void MerlinDeathEdge(){
 		var node = get(MyNodeLabels.merlinDeath.toString());
 		var nextNode1 = get(MyNodeLabels.returnToTable.toString());
 		var returnToDarkTable = new DialogChoice("Return to the Dark Table");
-		node.add(new Edge(returnToDarkTable, nextNode1);
+		node.add(new Edge(returnToDarkTable, nextNode1));
 		
 		
 }
