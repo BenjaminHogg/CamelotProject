@@ -333,6 +333,143 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new Attack(mercenary, player, true)).add(new Attack(player, mercenary, false)).add(new Clap(mercenary))
 		.add(new DialogSequence(mercenary, player, "Well done kid. Here take this. You are ready. Go get to work and make me proud.")).add(new setClothing(player, Bandit));
 	}
+	//Joseph Maggio
+	public void fletcher() {
+    		var fletcherNode = get(NodeLabels.fletcher.toString());
+    		fletcherNode.clearSequence();
+
+    		fletcherNode.add(new HideMenu())
+                	.add(new FadeIn())
+                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
+                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
+                    	+ "He allows you to choose what to tackle first."))
+                	.add(new DialogSequence(Fletcher, player,
+                    	List.of("What would you like to learn first?"),
+                    	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
+}		
+	@BuilderMethod
+	public void arrowMaking() {
+    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+   		arrowMakingNode.clearSequence();
+
+    		arrowMakingNode.add(new HideMenu())
+                .add(new FadeIn())
+        	.add(new NarrationSequence("The fletcher teaches you the process of shaping your arrowhead, fletching your arrow, and imbuing it with potions and poisons. "
+        	+ "The process is long and tedious, but you eventually become a master."))
+                .add(new DialogSequence(Fletcher, player, List.of("What skill should you master next?"), List.of("Crafting", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
+}
+	@BuilderMethod
+	public void crafting() {
+    		var craftingNode = get(NodeLabels.crafting.toString());
+    		craftingNode.clearSequence();
+
+    		craftingNode.add(new HideMenu())
+                	.add(new FadeIn())
+                	.add(new NarrationSequence("The fletcher teaches you the art of carving your bow and stringing it. "
+                    	+ "There is an intense and in-depth process that comes with creating your bow. "
+                    	+ "Eventually, you create a beautiful weapon that suits you well. You give it a name."))
+                	.add(new DialogSequence(Fletcher, player,
+                    	List.of("What skill should you master next?"),
+                    	List.of("Arrow Making", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
+}
+	@BuilderMethod
+	public void agilityAndStealth() {
+    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		agilityNode.clearSequence();
+    		agilityNode.add(new HideMenu())
+               		.add(new FadeIn())
+               		.add(new NarrationSequence("After weeks of grueling physical training to meet the conditioning expectations of the fletcher, "
+                   	+ "he brings you hunting to teach you the art of stealth. After many failed hunts, you master the skill and can catch even a rabbit with your bare hands."))
+               		.add(new DialogSequence(Fletcher, player,
+                   	List.of("What skill do you master next?"),
+                   	List.of("Marksmanship", "Crafting", "Arrow Making", "(Must be done with all four skills) Devise your plan")));
+}
+
+	@BuilderMethod
+	public void marksmanship() {
+    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		marksmanshipNode.clearSequence();
+    		marksmanshipNode.add(new HideMenu())
+                    .add(new FadeIn())
+                    .add(new NarrationSequence("Here, the fletcher puts you through trials upon trials of target shooting. "
+                        + "He even comes up with more and more convoluted ways of testing your accuracy. "
+                        + "Eventually, you're able to outshoot even him in the trials. You have mastered the art."))
+                    .add(new DialogSequence(Fletcher, player,
+                        List.of("What do you master next?"),
+                        List.of("Arrow Making", "Agility and Stealth", "Crafting", "(Must be done with all four skills) Devise your plan")));
+}
+	@BuilderMethod
+	public void thePlan() {
+   		var planNode = get(NodeLabels.thePlan.toString());
+    		planNode.clearSequence();
+
+    		planNode.add(new HideMenu())
+            		.add(new FadeIn())
+            		.add(new NarrationSequence("You, the fletcher, and the rest of the Round Table devise your plan. "
+                		+ "You will sneak into a royal wedding party at the castle. There, you will take the king out from afar and get out with haste. "
+                		+ "To begin, you have to determine how to get into the party. Should you climb an outer wall and sneak into the party room, or attend the party with an inside man?"))
+            		.add(new DialogSequence(player, Fletcher,
+                	List.of("What is your approach?"),
+                	List.of("Climb the wall", "Attend the party")));
+}
+
+	
+	
+	public void insideTheCastleHalls() {
+    		var castleNode = get(NodeLabels.insideTheCastleHalls.toString());
+    		castleNode.clearSequence();
+		castleNode.add(new HideMenu())
+             		.add(new FadeIn())
+              		.add(new NarrationSequence("After climbing the wall, you search for a location from which you can take your lethal shot. "
+			+ "However, not long after your arrival, an arrow grazes your head. You look for its origin and find an occupied archer tower. "
+                  	+ "You swiftly draw your bow and strike the archer in the head before he can even get his second shot off. "
+                  	+ "It is from the archer tower that you will take your shot for glory."))
+              		.add(new DialogSequence(player, player,
+                  	List.of("You're in position. Are you ready?"),
+                  	List.of("From the archer tower")));
+}
+	@BuilderMethod
+	public void fromTheArcherTower() {
+    	var towerNode = get(NodeLabels.fromTheArcherTower.toString());
+    		towerNode.clearSequence();
+		towerNode.add(new HideMenu())
+             	.add(new FadeIn())
+             	.add(new NarrationSequence("From the archer tower, you are easily able to locate the party in the courtyard. "
+                 + "You pull your bow back, take a deep breath, and fire. You strike the king in the head, and chaos erupts. "
+                 + "You easily escape the castle."))
+             	.add(new DialogSequence(player, player,
+                 List.of("You return victorious."),
+                 List.of("Return to the Dark Table")));
+}
+	@BuilderMethod
+	public void weddingParty() {
+    		var weddingNode = get(NodeLabels.weddingParty.toString());
+    		weddingNode.clearSequence();
+
+    		weddingNode.add(new HideMenu())
+               .add(new FadeIn())
+               .add(new NarrationSequence("Upon arriving to the wedding party, the environment is rather overstimulating. "
+        	+ "Uproarious applause follows each and every speech, festive music fills the air, and most important of all — alcohol. "
+        	+ "Before you act, you find it best to wait until the liquid courage has been heavily consumed. "
+                + "From there, you will propose a game in which you shoot an apple off of one's head."))
+               .add(new DialogSequence(player, player,
+                List.of("It’s time to make your move."),
+                List.of("The archery game")));
+}
+	@BuilderMethod
+	public void archeryGame() {
+    		var archeryNode = get(NodeLabels.archeryGame.toString());
+    		archeryNode.clearSequence();
+    		archeryNode.add(new HideMenu())
+               .add(new FadeIn())
+               .add(new NarrationSequence("After convincing many drunks to participate in your game, you have adequately displayed your skills as an archer. "
+		+ "Finally, you ask the king to give it a try. In his drunken state, he is more than happy to demonstrate his bravery. "
+                + "You pull back your bow, take a deep breath, and shoot the king square in the head. Chaos breaks out, and you barely escape the castle."))
+               .add(new DialogSequence(player, player,
+                List.of("You escape through the madness."),
+                List.of("Return to the Dark Table")));
+}
+	
 		
 }
 	//Christian Maron
