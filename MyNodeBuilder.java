@@ -340,40 +340,42 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void Potion(){
 		var potion = get(MyNodeLabels.potion.toString());
 		potion.add(new DialogSequence(bandit3, player, List.of("You chose the potion as your means of killing Merlin. Ideally you hope to concoct a potion that deals devastating damage in the least amount of time possible. In order to master the art of brewing you should take up an apprenticeship with the local warlock");
-			}
+	@BuilderMethod 		}
 	public void DarkArts(){
 		var darkArts = get(MyNodeLabels.darkArts.toString());
 		darkArts.add(new DialogSequence(bandit3, player, List.of("You chose the dark arts as your means of killing Merlin. In order to develop such skills in a timely manner, you must take an appremticeship with the local warlock.");
 			}
-		
+	@BuilderMethod 	
         public void PotionApprenticeship(){
 		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship.toString());
 		potionApprencticeship.add(new CreateCharacterSequence(potionWarlock)
 		.add(new CreateAll(List.of(potion,potionRoom))
 		.add(new SetPosition(player, potionRoom, "Bar")
 		.add(new SetPosition(darkArtsWarlock, potionRoom, "Backdoor")
-		.add(new Give(potionWarlock, potion, player));
+		.add(new Give(potionWarlock, potion, player))
 		.add(new DialogSequence(potionWarlock,player, List.of("You are ready");
-			}
+	@BuilderMethod 		}
 	public void DarkArtsApprenticeship(){
 		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship.toString());
 		darkArtsApprenticehip.add(new CreateCharacterSequence(darkArtsWarlock)
 		.add(new CreateAll(List.of(wand,darkArtsRoom))
 		.add(new SetPosition(player, darkArtsRoom, "Bar")
 		.add(new SetPosition(darkArtsWarlock, darkArtsRoom, "Backdoor")
-		.add(new Give(darkArtsWarlock, wand, player));
+		.add(new Give(darkArtsWarlock, wand, player))
 		.add(new DialogSequence(darkArtsWarlock, player, List.of("You are ready");
 			}
+	@BuilderMethod 
 	public void PotionBattle(){
 		var potionBattle = get(MyNodeLabels.potionBattle.toString());
 		potionBattle.add(new CreateAll(List.of(potionBattleArea)
 		.add(new CreateCharacterSequence(merlin)
 		.add(new SetPosition(merlin, potionBattleArea, "Well")
 		.add(new SetPosition(player, potionBattleArea, "DirtPile")
-		.add(new Attack(player, merlin, false);
-		.add(new Effect(merlin, potionEffect);
+		.add(new Attack(player, merlin, false)
+		.add(new Effect(merlin, potionEffect)
 		.add(new Die(merlin);
 			}
+	@BuilderMethod 
 	public void DarkArtsBattle(){
 		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle.toString());
 		darkArtsBattle.add(new CreateAll(List.of(darkArtsBattleArea)
@@ -388,6 +390,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new Die(merlin));
 		
 			}
+	@BuilderMethod 
 	public void MerlinDeath(){
 		var merlinDeath = get(MyNodeLabels.merlinDeath.toString());
 		merlinDeath.add(new Attack(player, merlin, false))
