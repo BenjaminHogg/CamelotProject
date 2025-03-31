@@ -266,6 +266,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var nextNode1 = get(MyNodeLabels.merlinDeath.toString());
 		var checkMerlin = new DialogChocie("Make sure that he is dead.");
 		node.add(new Edge(checkMerlin, nextNode1);
+		@BuilderMethod
+	public void DarkArtsBattleEdge(){
+		var node = get(MyNodeLabels.darkArtsBattle.toString());
+		var nextNode1 = get(MyNodeLabels.merlinDeath.toString());
+		var checkMerlin = new DialogChocie("Make sure that he is dead.");
+		node.add(new Edge(checkMerlin, nextNode1);
 	@BuilderMethod
 	public void MerlinDeathEdge(){
 		var node = get(MyNodeLabels.merlinDeath.toString());
