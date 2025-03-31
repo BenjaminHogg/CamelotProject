@@ -222,5 +222,23 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void PotionEdge(){
 		var node = get(MyNodeLabels.potion.toString());
-		var nextNode1 = get(MyNodeLabels.
+		var nextNode1 = get(MyNodeLabels.potionApprenticeship.toString());
+	}
+	public void DarkArtsEdge(){
+		var node = get(MyNodeLabels.darkArts.toString());
+		var nextNode1 = get(MyNodeLabels.darkArtsApprenticeship.toString());
+	}
+	public void ArtsApprenticeshipEdge(){
+		var node = get(MyNodeLabels.darkArtsApprenticeship.toString());
+		var nextNode1 = get(MyNodeLabels.darkArtsBattle.toString());
+	}
+	public void PotionApprenticeshipEdge(){
+		var node = get(MyNodeLabels.potionApprenticeship.toString());
+		var nextNode1 = get(MyNodeLabels.potionBattle.toString());
+	}
+	public void MerlinDeathEdge(){
+		var node = get(MyNodeLabels.merlinDeath.toString());
+		var nextNode = get(MyNodeLabels.returnToTable.toString());
+		
+		
 }
