@@ -395,7 +395,8 @@ public class MyNodeBuilder extends NodeBuilder {
 		var merlinDeath = get(MyNodeLabels.merlinDeath.toString());
 		merlinDeath.add(new Attack(player, merlin, false))
 		.add(new DialogSequence(player, merlin, List.of("It has been done")));
-			}
+	}
+			
 
 	
 		
