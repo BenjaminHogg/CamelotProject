@@ -137,7 +137,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void merlinChoice() {
 	var merlin = get(MyNodeLabels.merlin.toString())
 	merlin.add(new DialogSequence(bandit3, player, 
-	"To kill merlin, you must learn the art of wizardry. "
+	List.of("To kill merlin, you must learn the art of wizardry. "
 	+ "Merlin will not be slain by a sword, but can be killed by magic. "
 	+ "You must devise a plan to do this. "
 	+ "How will you take out merlin?"));
@@ -335,3 +335,33 @@ public class MyNodeBuilder extends NodeBuilder {
 	}
 		
 }
+	//Christian Maron
+	@BuilderMethod 
+	public void Potion(){
+		var potion = get(MyNodeLabels.potion.toString());
+		potion.add(
+			}
+	public void DarkArts(){
+		var darkArts = get(MyNodeLabels.darkArts.toString())
+			}
+		
+        public void PotionApprenticeship(){
+		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship)
+			}
+	public void DarkArtsApprenticeship(){
+		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship)
+			}
+	public void PotionBattle(){
+		var potionBattle = get(MyNodeLabels.potionBattle)
+			}
+	public void DarkArtsBattle(){
+		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle)
+			}
+	public void MerlinDeath(){
+		var merlinDeath = get(MyNodeLabels.merlinDeath)
+			}
+	
+		
+			
+			
+	
