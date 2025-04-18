@@ -19,6 +19,12 @@ public final class MyStoryEntities {
 	public static final Characters Recruiter = new Characters("Recruiter", BodyTypes.D, Clothing.LightArmour, HairStyle.Mage_Full, Colors.Black, 5);
 	public static final Item bottle = new Item("bottle", ItemTypes.Bottle);
 	public static final Place city = new Place("city", PlaceTypes.City);
+	public static final Place armory = new Place("armory", PlaceTypes.Blacksmith);
+	public static final Characters lancelot = new Characters("lancelot", BodyTypes.D, Clothing.King, HairStyle.Musketeer, Colors.Black, 5);
+	public static final Characters Ally = new Characters("Ally", BodyTypes.D, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
+	public static final Characters mercenary = new Characters("mercenary", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
+	public static final Place mercenaryCamp = new Place("mercenaryCamp", PlaceTypes.Camp);
+	public static final Place ambushStreet = new Place("ambushStreet", PlaceTypes.Courtyard);
 
 	//Christian Maron
 	public static final Characters bandit1 = new Characters("bandit1", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
