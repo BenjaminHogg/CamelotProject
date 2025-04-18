@@ -25,6 +25,12 @@ public final class MyStoryEntities {
 	public static final Characters mercenary = new Characters("mercenary", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
 	public static final Place mercenaryCamp = new Place("mercenaryCamp", PlaceTypes.Camp);
 	public static final Place ambushStreet = new Place("ambushStreet", PlaceTypes.Courtyard);
+	public static final Item halberd = new Item("halberd", ItemTypes.Bread);
+	public static final Item tankArmor = new Item("tankArmor", ItemTypes.Helmet);
+	public static final Item blunderbuss = new Item("blunderbuss", ItemTypes.ChickenLeg);
+	public static final Item axe = new Item("axe", ItemTypes.Hammer);
+	public static final Item mace = new Item("mace", ItemTypes.Torch);
+	public static final Item dagger = new Item("dagger", ItemTypes.Sword);
 
 	//Christian Maron
 	public static final Characters bandit1 = new Characters("bandit1", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
