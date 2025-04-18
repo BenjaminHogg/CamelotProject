@@ -38,4 +38,18 @@ public final class MyStoryEntities {
 	public static final Characters bandit3 = new Characters("bandit3", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
 	public static final Place darTable = new Place("DarTable", PlaceTypes.DiningRoom);
 
+
+	//Joseph Maggio
+	public static final Characters fletcher = new Characters("fletcher", BodyTypes.H, Clothing.LightArmour,HairStyle.Short, Colors.Brown,5);
+	public static final Characters arthur = new Characters("arthur",BodyTypes.F, Clothing.Noble, HairStyle.Spiky, Colors.Blonde,1);
+	public static final Characters merlin = new Characters("merlin", BodyTypes.A, Clothing.Priest, HairStyle.Mage,Colors.Gray,2);
+	public static final Item bow = new Item("bow", ItemTypes.InkandQuill);
+	public static final Place darkTable = new Place("dark table", PlaceTypes.Dungeon);
+	public static final Place castleHall = new Place("castle hall", PlaceTypes.GreatHall);
+	public static final Place forest = new Place("forest", PlaceTypes.ForestPath);
+	public static final Characters noble1 = new Characters("noble1",BodyTypes.F, Clothing.Noble,HairStyle.Short, Colors.Gray, 2);
+	public static final Characters noble2 = new Characters("noble2",BodyTypes.C, Clothing.Noble,HairStyle.Short, Colors.Gray, 2);
+	public static final Characters noble3 = new Characters("noble3",BodyTypes.F, Clothing.Noble,HairStyle.Short, Colors.Blonde, 2);
+
+	
 }
