@@ -11,7 +11,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public MyNodeBuilder(List<Node> list) {
 		super(list);
 	}
-	// Group Members: Benjamin Hogg
+	// Group Members: Benjamin Hogg, Joseph Maggio, Christian Maron
 	/**
 	 * Write a method for each node. 
 	 * Use get to get a reference to the node using its label.
@@ -135,12 +135,12 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Christian Maron
 	@BuilderMethod
 	public void merlinChoice() {
-	var merlin = get(MyNodeLabels.merlin.toString())
+	var merlin = get(MyNodeLabels.merlin.toString());
 	merlin.add(new DialogSequence(bandit3, player, 
 	List.of("To kill merlin, you must learn the art of wizardry. "
 	+ "Merlin will not be slain by a sword, but can be killed by magic. "
 	+ "You must devise a plan to do this. "
-	+ "How will you take out merlin?"));
+	+ "How will you take out merlin?"),List.of("")));
 	}
 
 	
@@ -155,7 +155,7 @@ public class MyNodeBuilder extends NodeBuilder {
     	armoryNode.clearSequence();
     	//Benjamin Hogg
     	armoryNode.add(new CreateAll(List.of(armory, halberd, tankArmor, blunderbuss, axe, mace, dagger)))
-    	add(new SetPosition(player, armory, "Door")).add(new SetPosition(Ally, armory, "Anvil"));
+    	.add(new SetPosition(player, armory, "Door")).add(new SetPosition(Ally, armory, "Anvil"));
     
     	// Set the scene
     	armoryNode.add(new HideMenu())
@@ -174,7 +174,7 @@ public class MyNodeBuilder extends NodeBuilder {
 
 	//Joseph Maggio
 	@BuilderMethod
-	public void fletcher() {
+	public void fletcher(){
     		var fletcherNode = get(MyNodeLabels.fletcher.toString());
     		fletcherNode.clearSequence();
     
@@ -187,14 +187,14 @@ public class MyNodeBuilder extends NodeBuilder {
                     	+ "He allows you to choose what to tackle first."));
 
     	// Present choices
-    	fletcherNode.add(new DialogSequence(Fletcher, player, 
+    	fletcherNode.add(new DialogSequence(fletcher, player, 
             	List.of("What do you want to learn first?"), 
             	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
 	}
 	//Joseph Maggio
 	@BuilderMethod
 	public void warlordWeaponSelection() {
-    		var warlordWeaponNode = get(MyNodeLabels.warlordWeaponSelection.toString());
+    		var warlordWeaponNode = get(MyNodeLabels.warlordWeapon.toString());
     		warlordWeaponNode.clearSequence();
     
    		 // Set the scene
@@ -206,7 +206,7 @@ public class MyNodeBuilder extends NodeBuilder {
                          	+ "Pick your weapon:"));
 
     		// Present weapon choices
-    		warlordWeaponNode.add(new DialogSequence(Armorer, player, 
+    		warlordWeaponNode.add(new DialogSequence(armorer, player, 
            	List.of("Which weapon will you wield?"), 
             	List.of("War Axe", "Chain Mace", "What even is that?")));
 	}
@@ -216,15 +216,15 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Begin tank node
 	public void tankWeaponSelection() {
 		var tankWeaponNode = get(MyNodeLabels.tankWeaponNode.toString());
-		tankWeaponNode.clearsequence();
+		tankWeaponNode.clearSequence();
 		tankWeaponNode.add(new WalkTo(Ally, armory, "Chest")).add(new Unpocket(Ally, halberd))
-		.add(new PlayerInteraction(takeHalberd, Ally, PlayerInteraction.Icons, "Take your weapon."));
+		.add(new PlayerInteraction("takeHalberd", Ally, PlayerInteraction.Icons.HAND, "Take your weapon."));
 	}
 	@BuilderMethod
 	public void takeHalberd() {
 		var takehal = get(MyNodeLabels.takehal.toString());
 		takehal.add(new Give(Ally, halberd, player)).add(new Give(Ally, tankArmor, player)).add(new SetClothing(player, HeavyArmour))
-		.add(new DialogSequence(Armorer, Player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Meet me out back.", null)))
+		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Meet me out back.", List.of("")));
 	}
 	
 	@BuilderMethod
@@ -311,7 +311,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void assassinWeaponSelection() {
 		var assassinWeaponNode = get(MyNodeLabels.assassinWeaponNode.toString());
-		assassinWeaponNode.clearsequence();
+		assassinWeaponNode.clearSequence();
 		assassinWeaponNode.add(new WalkTo(Ally, armory, "Backdoor")).add(new Give(Ally, dagger, player));
 	}
 	//Maybe add a node or something where the armorer explains the mercenary eventually
@@ -334,7 +334,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new DialogSequence(mercenary, player, "Well done kid. Here take this. You are ready. Go get to work and make me proud.")).add(new setClothing(player, Bandit));
 	}
 	//Joseph Maggio
-	public void fletcher() {
+	/*public void fletcher() {
     		var fletcherNode = get(NodeLabels.fletcher.toString());
     		fletcherNode.clearSequence();
 
@@ -346,21 +346,21 @@ public class MyNodeBuilder extends NodeBuilder {
                 	.add(new DialogSequence(Fletcher, player,
                     	List.of("What would you like to learn first?"),
                     	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
-}		
+}*/		
 	@BuilderMethod
 	public void arrowMaking() {
-    		var arrowMakingNode = get(NodeLabels.arrowMaking.toString());
+    		var arrowMakingNode = get(MyNodeLabels.arrowMaking.toString());
    		arrowMakingNode.clearSequence();
 
     		arrowMakingNode.add(new HideMenu())
                 .add(new FadeIn())
         	.add(new NarrationSequence("The fletcher teaches you the process of shaping your arrowhead, fletching your arrow, and imbuing it with potions and poisons. "
         	+ "The process is long and tedious, but you eventually become a master."))
-                .add(new DialogSequence(Fletcher, player, List.of("What skill should you master next?"), List.of("Crafting", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
+                .add(new DialogSequence(fletcher, player, List.of("What skill should you master next?"), List.of("Crafting", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
 }
 	@BuilderMethod
 	public void crafting() {
-    		var craftingNode = get(NodeLabels.crafting.toString());
+    		var craftingNode = get(MyNodeLabels.crafting.toString());
     		craftingNode.clearSequence();
 
     		craftingNode.add(new HideMenu())
@@ -368,39 +368,39 @@ public class MyNodeBuilder extends NodeBuilder {
                 	.add(new NarrationSequence("The fletcher teaches you the art of carving your bow and stringing it. "
                     	+ "There is an intense and in-depth process that comes with creating your bow. "
                     	+ "Eventually, you create a beautiful weapon that suits you well. You give it a name."))
-                	.add(new DialogSequence(Fletcher, player,
+                	.add(new DialogSequence(fletcher, player,
                     	List.of("What skill should you master next?"),
                     	List.of("Arrow Making", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
 }
 	@BuilderMethod
 	public void agilityAndStealth() {
-    		var agilityNode = get(NodeLabels.agilityAndStealth.toString());
+    		var agilityNode = get(MyNodeLabels.agilityAndStealth.toString());
     		agilityNode.clearSequence();
     		agilityNode.add(new HideMenu())
                		.add(new FadeIn())
                		.add(new NarrationSequence("After weeks of grueling physical training to meet the conditioning expectations of the fletcher, "
                    	+ "he brings you hunting to teach you the art of stealth. After many failed hunts, you master the skill and can catch even a rabbit with your bare hands."))
-               		.add(new DialogSequence(Fletcher, player,
+               		.add(new DialogSequence(fletcher, player,
                    	List.of("What skill do you master next?"),
                    	List.of("Marksmanship", "Crafting", "Arrow Making", "(Must be done with all four skills) Devise your plan")));
 }
 
 	@BuilderMethod
 	public void marksmanship() {
-    		var marksmanshipNode = get(NodeLabels.marksmanship.toString());
+    		var marksmanshipNode = get(MyNodeLabels.marksmanship.toString());
     		marksmanshipNode.clearSequence();
     		marksmanshipNode.add(new HideMenu())
                     .add(new FadeIn())
                     .add(new NarrationSequence("Here, the fletcher puts you through trials upon trials of target shooting. "
                         + "He even comes up with more and more convoluted ways of testing your accuracy. "
                         + "Eventually, you're able to outshoot even him in the trials. You have mastered the art."))
-                    .add(new DialogSequence(Fletcher, player,
+                    .add(new DialogSequence(fletcher, player,
                         List.of("What do you master next?"),
                         List.of("Arrow Making", "Agility and Stealth", "Crafting", "(Must be done with all four skills) Devise your plan")));
 }
 	@BuilderMethod
 	public void thePlan() {
-   		var planNode = get(NodeLabels.thePlan.toString());
+   		var planNode = get(MyNodeLabels.thePlan.toString());
     		planNode.clearSequence();
 
     		planNode.add(new HideMenu())
@@ -408,7 +408,7 @@ public class MyNodeBuilder extends NodeBuilder {
             		.add(new NarrationSequence("You, the fletcher, and the rest of the Round Table devise your plan. "
                 		+ "You will sneak into a royal wedding party at the castle. There, you will take the king out from afar and get out with haste. "
                 		+ "To begin, you have to determine how to get into the party. Should you climb an outer wall and sneak into the party room, or attend the party with an inside man?"))
-            		.add(new DialogSequence(player, Fletcher,
+            		.add(new DialogSequence(player, fletcher,
                 	List.of("What is your approach?"),
                 	List.of("Climb the wall", "Attend the party")));
 }
@@ -416,7 +416,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	
 	
 	public void insideTheCastleHalls() {
-    		var castleNode = get(NodeLabels.insideTheCastleHalls.toString());
+    		var castleNode = get(MyNodeLabels.insideTheCastleHalls.toString());
     		castleNode.clearSequence();
 		castleNode.add(new HideMenu())
              		.add(new FadeIn())
@@ -430,7 +430,7 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 	@BuilderMethod
 	public void fromTheArcherTower() {
-    	var towerNode = get(NodeLabels.fromTheArcherTower.toString());
+    	var towerNode = get(MyNodeLabels.fromTheArcherTower.toString());
     		towerNode.clearSequence();
 		towerNode.add(new HideMenu())
              	.add(new FadeIn())
@@ -443,7 +443,7 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 	@BuilderMethod
 	public void weddingParty() {
-    		var weddingNode = get(NodeLabels.weddingParty.toString());
+    		var weddingNode = get(MyNodeLabels.weddingParty.toString());
     		weddingNode.clearSequence();
 
     		weddingNode.add(new HideMenu())
@@ -458,7 +458,7 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 	@BuilderMethod
 	public void archeryGame() {
-    		var archeryNode = get(NodeLabels.archeryGame.toString());
+    		var archeryNode = get(MyNodeLabels.archeryGame.toString());
     		archeryNode.clearSequence();
     		archeryNode.add(new HideMenu())
                .add(new FadeIn())
@@ -471,36 +471,40 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 	
 		
-}
+
 	//Christian Maron
 	@BuilderMethod 
 	public void Potion(){
 		var potion = get(MyNodeLabels.potion.toString());
-		potion.add(new DialogSequence(bandit3, player, List.of("You chose the potion as your means of killing Merlin. Ideally you hope to concoct a potion that deals devastating damage in the least amount of time possible. In order to master the art of brewing you should take up an apprenticeship with the local warlock")));
-	@BuilderMethod 		}
+		potion.add(new DialogSequence(bandit3, player, List.of("You chose the potion as your means of killing Merlin. Ideally you hope to concoct a potion that deals devastating damage in the least amount of time possible. In order to master the art of brewing you should take up an apprenticeship with the local warlock"),List.of("")));
+	}
+		@BuilderMethod 		
 	public void DarkArts(){
 		var darkArts = get(MyNodeLabels.darkArts.toString());
-		darkArts.add(new DialogSequence(bandit3, player, List.of("You chose the dark arts as your means of killing Merlin. In order to develop such skills in a timely manner, you must take an appremticeship with the local warlock.")));
+		darkArts.add(new DialogSequence(bandit3, player, List.of("You chose the dark arts as your means of killing Merlin. In order to develop such skills in a timely manner, you must take an appremticeship with the local warlock."),null));
 			}
+		
 	@BuilderMethod 	
-        public void PotionApprenticeship(){
+    public void PotionApprenticeship(){
 		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship.toString());
-		potionApprencticeship.add(new CreateCharacterSequence(potionWarlock))
+		potionApprenticeship.add(new CreateCharacterSequence(potionWarlock))
 		.add(new CreateAll(List.of(potion,potionRoom)))
 		.add(new SetPosition(player, potionRoom, "Bar"))
-		.add(new SetPosition(darkArtsWarlock, potionRoom, "Backdoor"))
+		.add(new SetPosition(potionWarlock, potionRoom, "Backdoor"))
 		.add(new Give(potionWarlock, potion, player))
-		.add(new DialogSequence(potionWarlock,player, List.of("You are ready")));
-	@BuilderMethod 		}
-	public void DarkArtsApprenticeship(){
-		var darkArtsApprenticeship() = get(MyNodeLabels.darkArtsApprenticeship.toString());
-		darkArtsApprenticehip.add(new CreateCharacterSequence(darkArtsWarlock))
+		.add(new DialogSequence(potionWarlock,player, List.of("You are ready"),null));
+	}
+	
+	@BuilderMethod 		
+	public void DarkArtsApprenticeship() {
+		var darkArtsApprenticeship = get(MyNodeLabels.darkArtsApprenticeship.toString());
+		darkArtsApprenticeship.add(new CreateCharacterSequence(darkArtsWarlock))
 		.add(new CreateAll(List.of(wand,darkArtsRoom)))
 		.add(new SetPosition(player, darkArtsRoom, "Bar"))
 		.add(new SetPosition(darkArtsWarlock, darkArtsRoom, "Backdoor"))
 		.add(new Give(darkArtsWarlock, wand, player))
-		.add(new DialogSequence(darkArtsWarlock, player, List.of("You are ready")));
-			}
+		.add(new DialogSequence(darkArtsWarlock, player, List.of("You are ready"),null));
+		}
 	@BuilderMethod 
 	public void PotionBattle(){
 		var potionBattle = get(MyNodeLabels.potionBattle.toString());
@@ -509,7 +513,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new SetPosition(merlin, potionBattleArea, "Well"))
 		.add(new SetPosition(player, potionBattleArea, "DirtPile"))
 		.add(new Attack(player, merlin, false))
-		.add(new Effect(merlin, potionEffect))
+		//.add(new Effect(merlin, potionEffect))
 		.add(new Die(merlin));
 			}
 	@BuilderMethod 
@@ -519,11 +523,11 @@ public class MyNodeBuilder extends NodeBuilder {
 		.add(new CreateCharacterSequence(merlin))
 		.add(new SetPosition(merlin, darkArtsBattleArea, "Well"))
 		.add(new SetPosition(player, darkArtsBattleArea, "DirtPile"))
-		.add(new CreateAll(List.of(merlinWand)))
-		.add(new Draw(merlin, merlinWand))
+		.add(new CreateAll(List.of(wand)))
+		.add(new Draw(merlin, wand))
 		.add(new Attack(merlin, player, true))
 		.add(new Cast(player, merlin))
-		.add(new Effect(merlin, wandEffect))
+		//.add(new Effects(merlin, wandEffect))
 		.add(new Die(merlin));
 		
 			}
@@ -531,12 +535,8 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void MerlinDeath(){
 		var merlinDeath = get(MyNodeLabels.merlinDeath.toString());
 		merlinDeath.add(new Attack(player, merlin, false))
-		.add(new DialogSequence(player, merlin, List.of("It has been done")));
+		.add(new DialogSequence(player, merlin, List.of("It has been done"),null));
 	}
-			
-
 	
-		
-			
 			
 	
