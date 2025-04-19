@@ -41,7 +41,7 @@ public final class MyStoryEntities {
 
 	//Joseph Maggio
 	public static final Characters fletcher = new Characters("fletcher", BodyTypes.H, Clothing.LightArmour,HairStyle.Short, Colors.Brown,5);
-	public static final Characters arthur = new Characters("arthur",BodyTypes.F, Clothing.Noble, HairStyle.Spiky, Colors.Blonde,1);
+	public static final Characters arthur = new Characters("arthur",BodyTypes.F, Clothing.King, HairStyle.Spiky, Colors.Blonde,1);
 	public static final Characters merlin = new Characters("merlin", BodyTypes.A, Clothing.Priest, HairStyle.Mage,Colors.Gray,2);
 	public static final Item bow = new Item("bow", ItemTypes.InkandQuill);
 	public static final Place darkTable = new Place("dark table", PlaceTypes.Dungeon);
@@ -50,6 +50,14 @@ public final class MyStoryEntities {
 	public static final Characters noble1 = new Characters("noble1",BodyTypes.F, Clothing.Noble,HairStyle.Short, Colors.Gray, 2);
 	public static final Characters noble2 = new Characters("noble2",BodyTypes.C, Clothing.Noble,HairStyle.Short, Colors.Gray, 2);
 	public static final Characters noble3 = new Characters("noble3",BodyTypes.F, Clothing.Noble,HairStyle.Short, Colors.Blonde, 2);
-
-	
+	public static final Characters armorer = new Characters("armorer",BodyTypes.F,Clothing.Merchant,HairStyle.Short,Colors.Brown,2);
+	public static final Characters potionWarlock = new Characters("potionWarlock",BodyTypes.F,Clothing.Warlock,HairStyle.Short,Colors.Red,2);
+	public static final Item potion = new Item("potion", ItemTypes.Bottle);
+	public static final Place potionRoom = new Place("Potion room", PlaceTypes.AlchemyShop);
+	public static final Characters darkArtsWarlock = new Characters("Dark arts Warlock",BodyTypes.F,Clothing.Warlock,HairStyle.Short,Colors.Red,2);
+	public static final Item wand = new Item("wand", ItemTypes.Apple);
+	public static final Place darkArtsRoom = new Place("dark arts room",PlaceTypes.Library);
+	public static final Place potionBattleArea = new Place("potion battle area", PlaceTypes.Ruins);
+	public static final Place darkArtsBattleArea = new Place("dark arts battle area", PlaceTypes.Ruins);
+	public static final Item sword = new Item("sword",ItemTypes.Sword);
 }
