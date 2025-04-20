@@ -98,14 +98,14 @@ public class MyEdgeBuilder extends NodeBuilder {
     		var fletcherChoice = new DialogChoice("Visit the Fletcher.");
    		node.add(new Edge(fletcherChoice, fletcherNode));
 
-    		var warlordWeaponNode = get(MyNodeLabels.warlordWeaponSelection.toString());
+    		var warlordWeaponNode = get(MyNodeLabels.warlordWeapon.toString());
     		var warlordWeaponChoice = new DialogChoice("Select Your Warlord Weapon.");
     		node.add(new Edge(warlordWeaponChoice, warlordWeaponNode));
 	}
 	//Benjamin Hogg	
 	@BuilderMethod
 	public void WarlordEdges() {
-		var node = get(MyNodeLabels.warlordWeaponNode.toString());
+		var node = get(MyNodeLabels.warlordWeapon.toString());
 		var nextNode1 = get(MyNodeLabels.blunderbuss.toString());
 		var nextNode2 = get(MyNodeLabels.waraxe.toString());
 		var nextNode3 = get(MyNodeLabels.chainmace.toString());
@@ -406,6 +406,8 @@ public class MyEdgeBuilder extends NodeBuilder {
     		var returnChoice = new DialogChoice("Return to the Dark Table");
     		archeryNode.add(new Edge(returnChoice, returnNode));
 }}
+
+	
 
 
 	
