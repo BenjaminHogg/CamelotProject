@@ -27,11 +27,10 @@ public class MyNodeBuilder extends NodeBuilder {
 		
 		//Benjamin Hogg Testing New Directory Push
 		var root = get(MyNodeLabels.root.toString());
-		root.clearSequence();
 		root.add(new CreateAll(List.of(city, bottle)))
 		.add(new SetTitle("The Dark Table"))
 		.add(new CreateCharacterSequence(player))
-		.add(new SetPosition(player, city, "Alley1"))
+		.add(new SetPosition(player, city, "Alley"))
 		.add(new Unpocket(player, bottle))
 		.add(new Kneel(player))
 		
@@ -81,8 +80,12 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void attackRecruiter() {
 		var atkRec = get(MyNodeLabels.atkRec.toString());
 		atkRec.clearSequence();
-		atkRec.add(new Attack(player, Recruiter, true)).add(new Attack(Recruiter, player, false))
-		.add(new Die(player)).add(new FadeOut());
+		atkRec.add(new HideDialog())
+		.add(new Attack(player, Recruiter, true)).add(new Attack(Recruiter, player, false))
+		.add(new Die(player));
+	
+		
+		
 		//Recruiter brings the player to the Dark Table
 	}
 	//Benjamin Hogg
@@ -90,7 +93,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void dontGoWithRecruiter() {
 		var dontGowR = get(MyNodeLabels.dontGowR.toString());
 		dontGowR.clearSequence();
-		dontGowR.add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
+		dontGowR.add(new HideDialog()).add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
 	}
 		//Christian Maron
 	@BuilderMethod
@@ -104,6 +107,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new SetPosition(bandit2,darTable, "FrontRightChair"))
 	.add(new SetPosition(bandit3, darTable, "BackLeftChair"))
 	.add(new SetPosition(player, darTable, "LeftChair"))
+	.add(new SetCameraFocus(player))
 	.add(new DialogSequence(bandit1, player,
 	List.of("We are tired of how the kingdom is" +
 	"We need you to bring the head of one prominent figure."
