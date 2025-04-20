@@ -222,9 +222,9 @@ public class MyNodeBuilder extends NodeBuilder {
 	}
 	@BuilderMethod
 	public void takeHalberd() {
-		var takehal = get(MyNodeLabels.takehal.toString());
+		var takehal = get(MyNodeLabels.takeHal.toString());
 		takehal.add(new Give(Ally, halberd, player)).add(new Give(Ally, tankArmor, player)).add(new SetClothing(player, HeavyArmour))
-		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Meet me out back.", List.of("")));
+		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Meet me out back."), List.of("")));
 	}
 	
 	@BuilderMethod
@@ -241,12 +241,12 @@ public class MyNodeBuilder extends NodeBuilder {
 		inMarket.add(new CreateAll(List.of(market, lancelot, marketPerson1, marketPerson2, marketPerson3, sword)))
 		.add(new setPosition(player, market, "Gate")).add(new setPosition(lancelot, market, "Exit")).add(new setPosition(marketPerson1, market, "Target"))
 		.add(new setPosition(marketPerson2, market, "BigStall")).add(new setPosition(marketPerson3, market, "SmallStall"))
-		.add(new(PlayerInteraction(talkToLancelot, lancelot, PlayerInteraction.Icons, "Confront Lancelot")))
+		.add(new(PlayerInteraction(talkToLancelot, lancelot, PlayerInteraction.Icons, "Confront Lancelot")));
 	}
 	
 	@BuilderMethod
 	public void theDuel() {
-		var duel = get(MyNodeLabels.theDuel.toString());
+		var duel = get(MyNodeLabels.duel.toString());
 		duel.add(new Draw(lancelot, sword)).add(new Draw(player, halberd)).add(new SetNight())
 		.add(new Attack(player, lancelot, true)).add(new Attack(lancelot, player, false)).add(new Attack(player, lancelot, false))
 		.add(new Die(lancelot));
@@ -255,8 +255,8 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void returnToDarkTable() {
 		var returnToTable = get(MyNodeLabels.returnToTable.toString());
-		returnToTable.add(new setPosition(player, darTable, "Door")).add(new WalkTo(bandit1, darTable, "Door"))
-		.add(new DialogSequence(bandit1, player, "Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate.", null))
+		returnToTable.add(new SetPosition(player, darTable, "Door")).add(new WalkTo(bandit1, darTable, "Door"))
+		.add(new DialogSequence(bandit1, player, List.of("Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate.")));
 		.add(new FadeOut());
 	}
 	//Maybe make a training sequence for the different weapons eventually. 
@@ -287,7 +287,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void TheAmbushPlan() {
 		var ambushPlan = get(MyNodeLabels.ambushPlan.toString());
-		ambushPlan.add(new FadeIn()).add(new setPosition(player, darTable, "Door"))
+		ambushPlan.add(new FadeIn()).add(new SetPosition(player, darTable, "Door"))
 		.add(new DialogSequence(bandit1, player,"Today Lancelot will be travelling to another city in order to meet with nobles. "
 				+ "As always he likes to make a scene of his departure and will be parading out of the city. We want to make a statement"
 				+ "with our rebellion and think you should ambush him in the street. Take him out and get out of there. We know you can"
@@ -298,8 +298,8 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void TheAmbush() {
 		var ambush = get(MyNodeLabels.ambush.toString());
 		ambush.add(new CreateAll(List.of(ambushStreet, lancelot, parader1, parader2, parader 3, sword)))
-		.add(new setPosition(player, ambushStreet, "NorthEnd")).add(new setPosition(lancelot, ambushStreet, "EastEnd"))
-		.add(new setPosition(parader1, ambushStreet, "BrownHouseDoor")).add(new setPosition(parader2, ambushStreet, "Fountain")).add(parader3, ambushStreet, "Fountain")
+		.add(new SetPosition(player, ambushStreet, "NorthEnd")).add(new SetPosition(lancelot, ambushStreet, "EastEnd"))
+		.add(new SetPosition(parader1, ambushStreet, "BrownHouseDoor")).add(new SetPosition(parader2, ambushStreet, "Fountain")).add(parader3, ambushStreet, "Fountain")
 		.add(new PlayerInteraction(talkToLancelot, lancelot, PlayerInteraction.Icons, "Attack!"));
 	}
 	@BuilderMethod
@@ -319,7 +319,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void TheMercenary() {
 		var mercenary = get(MyNodeLabels.mercenary.toString());
 		mercenary.add(new CreateAll(List.of(mercenaryCamp, mercenary, blade)))
-		.add(new setPosition(player, mercenaryCamp, "Exit")).add(new setPosition(mercenary, mercenaryCamp, "Chest"))
+		.add(new SetPosition(player, mercenaryCamp, "Exit")).add(new SetPosition(mercenary, mercenaryCamp, "Chest"))
 		.add(DialogSequence(mercenary, player, "Always a pleasure to meet one of you dark table folks. So you wish to become an assassin? It will"
 				+ " be intese training. Meet me over by the barrel and we can begin.")).add(new WalkTo(mercenary, mercenaryCamp, "Barrel"))
 		.add(new PlayerInteraction(talkToMercenary, mercenary, PlayerInteraction.Icons, "Begin Training"));
@@ -537,6 +537,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		merlinDeath.add(new Attack(player, merlin, false))
 		.add(new DialogSequence(player, merlin, List.of("It has been done"),null));
 	}
-	
+}
+		
 			
 	
