@@ -22,16 +22,24 @@ public final class MyStoryEntities {
 	public static final Place armory = new Place("armory", PlaceTypes.Blacksmith);
 	public static final Characters lancelot = new Characters("lancelot", BodyTypes.D, Clothing.King, HairStyle.Musketeer, Colors.Black, 5);
 	public static final Characters Ally = new Characters("Ally", BodyTypes.D, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
-	public static final Characters mercenary = new Characters("mercenary", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
+	public static final Characters Mercenary = new Characters("mercenary", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
 	public static final Place mercenaryCamp = new Place("mercenaryCamp", PlaceTypes.Camp);
 	public static final Place ambushStreet = new Place("ambushStreet", PlaceTypes.Courtyard);
 	public static final Item halberd = new Item("halberd", ItemTypes.Bread);
 	public static final Item tankArmor = new Item("tankArmor", ItemTypes.Helmet);
-	public static final Item blunderbuss = new Item("blunderbuss", ItemTypes.ChickenLeg);
+	public static final Item Blunderbuss = new Item("Blunderbuss", ItemTypes.ChickenLeg);
 	public static final Item axe = new Item("axe", ItemTypes.Hammer);
 	public static final Item mace = new Item("mace", ItemTypes.Torch);
 	public static final Item dagger = new Item("dagger", ItemTypes.Sword);
-
+	public static final Place market = new Place("market", PlaceTypes.City);
+	public static final Characters marketPerson1 = new Characters("marketPerson1", BodyTypes.D, Clothing.Peasant, HairStyle.Short, Colors.Gray, 4);
+	public static final Characters marketPerson2 = new Characters("marketPerson2", BodyTypes.G, Clothing.Peasant, HairStyle.Short, Colors.Gray, 3);
+	public static final Characters marketPerson3 = new Characters("marketPerson3", BodyTypes.B, Clothing.Peasant, HairStyle.Long, Colors.Black, 5);
+	public static final Characters parader1 = new Characters("parader1", BodyTypes.D, Clothing.Merchant, HairStyle.Short, Colors.Gray, 4);
+	public static final Characters parader2 = new Characters("parader2", BodyTypes.F, Clothing.Merchant, HairStyle.Short, Colors.Gray, 3);
+	public static final Characters parader3 = new Characters("parader3", BodyTypes.H, Clothing.Merchant, HairStyle.Long, Colors.Black, 5);
+	public static final Item blade = new Item("blade", ItemTypes.Sword);
+	
 	//Christian Maron
 	public static final Characters bandit1 = new Characters("bandit1", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
 	public static final Characters bandit2 = new Characters("bandit2", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
