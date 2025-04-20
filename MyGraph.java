@@ -3,16 +3,16 @@ package myclassproject.mystorygraph;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.storygraph.MyGraph;
-import com.storygraph.MyNodeBuilder;
+import com.storygraph.Graph;
+import com.storygraph.NodeBuilder;
 
-import myclassproject.questexample.MyNodeLabels;
+import myclassproject.questexample.NodeLabels;
 
 public class MyGraph extends Graph {
 	/**
 	 * The constructor creates a new object for each of the values in NodeLabels enum.
 	 */
-	public MyGraph(NodeLabels rootLabel) {
+	public MyGraph(MyNodeLabels rootLabel) {
 		super(Stream.of(MyNodeLabels.values()).map(z->z.toString()).collect(Collectors.toList()));    
 	}
 	
