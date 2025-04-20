@@ -212,7 +212,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	public void MercenaryEdges() {
 		var node = get(MyNodeLabels.mercenary.toString());
 		var nextNode1 = get(MyNodeLabels.mercTraining.toString());
-		var mercTrainingChoice = new PlayerInteraction("Talk to Mercenary", mercenary, Icons.talk, "Confront Lancelot");
+		var mercTrainingChoice = new PlayerInteraction("Talk to Mercenary", Mercenary, Icons.talk, "Confront Lancelot");
 		node.add(new Edge(mercTrainingChoice, nextNode1));
 	}
 	
@@ -412,4 +412,4 @@ public class MyEdgeBuilder extends NodeBuilder {
 
 	
 
-			
+	
