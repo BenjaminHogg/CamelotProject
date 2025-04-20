@@ -27,7 +27,7 @@ public final class MyStoryEntities {
 	public static final Place ambushStreet = new Place("ambushStreet", PlaceTypes.Courtyard);
 	public static final Item halberd = new Item("halberd", ItemTypes.Bread);
 	public static final Item tankArmor = new Item("tankArmor", ItemTypes.Helmet);
-	public static final Item Blunderbuss = new Item("Blunderbuss", ItemTypes.ChickenLeg);
+	public static final Item Blunderbussitem = new Item("Blunderbussitem", ItemTypes.ChickenLeg);
 	public static final Item axe = new Item("axe", ItemTypes.Hammer);
 	public static final Item mace = new Item("mace", ItemTypes.Torch);
 	public static final Item dagger = new Item("dagger", ItemTypes.Sword);
