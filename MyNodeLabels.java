@@ -18,7 +18,7 @@ public enum MyNodeLabels{
 	warlordWeapon, 
 	fletcherNode,
 	tankWeaponNode,
-	takehal,
+	takeHal,
 	expDuel,
 	inMarket,
 	duel,
