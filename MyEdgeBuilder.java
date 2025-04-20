@@ -187,14 +187,14 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void InMarketEdges() {
 		var node = get(MyNodeLabels.inMarket.toString());
-		var nextNode1 = get(MyNodeLabels.theDuel.toString());
+		var nextNode1 = get(MyNodeLabels.duel.toString());
 		var theDuelChoice = new PlayerInteraction("Talk to Lancelot", lancelot, Icons.talk, "Confront Lancelot");
 		node.add(new Edge(theDuelChoice, nextNode1));
 	}
 	
 	@BuilderMethod
 	public void TheDuelEdges() {
-		var node = get(MyNodeLabels.theDuel.toString());
+		var node = get(MyNodeLabels.duel.toString());
 		var nextNode1 = get(MyNodeLabels.duel.toString());
 		var duelChoice = new PlayerInteraction(player, "Exit", new Furniture(ambushStreet, FurnitureTypes.Exit));
 		node.add(new Edge(duelChoice, nextNode1));
@@ -225,7 +225,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	//Christian Maron
 	@BuilderMethod
 	public void merlinChoiceEdge(){
-		var node = get(MyNodeLabels.merlinChoice.toString());
+		var node = get(MyNodeLabels.merlin.toString());
 		var nextNode1 = get(MyNodeLabels.potion.toString());
 		var nextNode2 = get(MyNodeLabels.darkArts.toString());
 		var potionChoice = new DialogChoice("Take on Merlin with a potion.");
@@ -395,7 +395,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void weddingPartyEdges() {
     		var weddingNode = get(MyNodeLabels.weddingParty.toString());
-    		var archeryGameNode = get(NodeLabels.archeryGame.toString());
+    		var archeryGameNode = get(MyNodeLabels.archeryGame.toString());
    		var gameChoice = new DialogChoice("The archery game");
     		weddingNode.add(new Edge(gameChoice, archeryGameNode));
 }
@@ -406,6 +406,7 @@ public class MyEdgeBuilder extends NodeBuilder {
     		var returnChoice = new DialogChoice("Return to the Dark Table");
     		archeryNode.add(new Edge(returnChoice, returnNode));
 }}
+
 
 	
 
