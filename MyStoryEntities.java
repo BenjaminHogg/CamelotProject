@@ -31,7 +31,7 @@ public final class MyStoryEntities {
 	public static final Item axe = new Item("axe", ItemTypes.Hammer);
 	public static final Item mace = new Item("mace", ItemTypes.Torch);
 	public static final Item dagger = new Item("dagger", ItemTypes.Sword);
-	public static final Place market = new Place("market", PlaceTypes.City);
+	public static final Place market = new Place("market", PlaceTypes.Courtyard);
 	public static final Characters marketPerson1 = new Characters("marketPerson1", BodyTypes.D, Clothing.Peasant, HairStyle.Short, Colors.Gray, 4);
 	public static final Characters marketPerson2 = new Characters("marketPerson2", BodyTypes.G, Clothing.Peasant, HairStyle.Short, Colors.Gray, 3);
 	public static final Characters marketPerson3 = new Characters("marketPerson3", BodyTypes.B, Clothing.Peasant, HairStyle.Long, Colors.Black, 5);
