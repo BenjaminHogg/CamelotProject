@@ -127,11 +127,8 @@ public class MyNodeBuilder extends NodeBuilder {
 	arthur
 	.add(new HideDialog())
 	.add(new DialogSequence(bandit1, player, 
-	List.of("Arthur has the famed blade Excalibur." +
-	"If you wish to kill him, a swordright is hopeless."  +
-	"You must take him down from range." +
-	"In order to do this, you must become skilled with a bow." +
-	"You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), List.of()));
+	.add(new DialogSequence(bandit1, player, 
+	List.of("Arthur has the famed blade Excalibur. If you wish to kill him, a swordright is hopeless. You must take him down from range. In order to do this, you must become skilled with a bow. You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), List.of("Continue")));
 		
 	}
 	//Christian Maron
