@@ -69,7 +69,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Benjamin Hogg
 	@BuilderMethod
 	public void askRecruiter() {
-		var ask = get(MyNodeLabels.ask.toString());
+		var ask = get(MyNodeLabels.askRecruiter.toString());
 		ask.clearSequence();
 		ask.add(new HideDialog()).add(new DialogSequence(Recruiter, player, 
 				List.of("I know who you are. I know of your past. I need your help. We can stop the cycle of this kingdom. Will you join me?"), 
@@ -99,7 +99,10 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void theDarkTable() {
 	var darkTable = get(MyNodeLabels.darkTable.toString());
-	darkTable.add(new CreateAll(List.of(darTable)))
+	
+	darkTable.add(new HideDialog())
+	.add(new FadeOut())
+	.add(new CreateAll(List.of(darTable)))
 	.add(new CreateCharacterSequence(bandit1))
 	.add(new CreateCharacterSequence(bandit2))
 	.add(new CreateCharacterSequence(bandit3))
@@ -108,10 +111,12 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new SetPosition(bandit3, darTable, "BackLeftChair"))
 	.add(new SetPosition(player, darTable, "LeftChair"))
 	.add(new SetCameraFocus(player))
+	.add(new FadeIn())
+	.add(new Face(bandit1, player))
 	.add(new DialogSequence(bandit1, player,
 	List.of("We are tired of how the kingdom is" +
 	"We need you to bring the head of one prominent figure."
-	+ "The choice is yours."), List.of("Next")));
+	+ "The choice is yours."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));
 		
 		
 	}
@@ -119,7 +124,9 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void arthurChoice() {
 	var arthur = get(MyNodeLabels.arthur.toString());
-	arthur.add(new DialogSequence(bandit1, player, 
+	arthur
+	.add(new HideDialog())
+	.add(new DialogSequence(bandit1, player, 
 	List.of("Arthur has the famed blade Excalibur." +
 	"If you wish to kill him, a swordright is hopeless."  +
 	"You must take him down from range." +
@@ -540,4 +547,3 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 		
 			
-	
