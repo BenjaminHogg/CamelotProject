@@ -132,6 +132,27 @@ public class MyEdgeBuilder extends NodeBuilder {
 		node.add(new Edge(continueChoice, nextNode1));
 		node.add(new Edge(darkartsChoice, nextNode2));
 	}
+	@BuilderMethod
+	public void ArmoryNar() {
+		var node = get(MyNodeLabels.armory.toString());
+		var nextNode1 = get(MyNodeLabels.armoryChoices.toString());
+		var armChoice = new CloseNarrationChoice();
+		node.add(new Edge(armChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void ArmoryChoices() {
+		var node = get(MyNodeLabels.armoryChoices.toString());
+		var nextNode1 = get(MyNodeLabels.tankWeaponNode.toString());
+		var nextNode2 = get(MyNodeLabels.assassinWeaponNode.toString());
+		var nextNode3 = get(MyNodeLabels.warlordWeapon.toString());
+		var tankChoice = new DialogChoice("Tank");
+		var assassinChoice = new DialogChoice("Assassin");
+		var warlordChoice = new DialogChoice("Warlord");
+		node.add(new Edge(tankChoice, nextNode1));
+		node.add(new Edge(assassinChoice, nextNode2));
+		node.add(new Edge(warlordChoice, nextNode3));
+	}
 	//Benjamin Hogg	
 	@BuilderMethod
 	public void WarlordEdges() {
@@ -202,14 +223,30 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void TakeHalEdges() {
 		var node = get(MyNodeLabels.takeHal.toString());
+		var nextNode1 = get(MyNodeLabels.leaveArm.toString());
+		var expDuelChoice = new DialogChoice("Ok");
+		node.add(new Edge(expDuelChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void leaveArmEdges() {
+		var node = get(MyNodeLabels.leaveArm.toString());
 		var nextNode1 = get(MyNodeLabels.expDuel.toString());
-		var expDuelChoice = new PlayerInteraction("Open Door", new Furniture(armory, FurnitureTypes.Backdoor), Icons.door, "Leave");
+		var expDuelChoice = new PlayerInteraction("Open Door", new Furniture(armory, FurnitureTypes.Door), Icons.door, "Leave");
 		node.add(new Edge(expDuelChoice, nextNode1));
 	}
 	
 	@BuilderMethod
 	public void ExpDuelEdges() {
 		var node = get(MyNodeLabels.expDuel.toString());
+		var nextNode1 = get(MyNodeLabels.inMarket.toString());
+		var inMarketChoice = new DialogChoice("Works for me I guess.");
+		node.add(new Edge(inMarketChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void leaveforDuelEdges() {
+		var node = get(MyNodeLabels.leaveforDuel.toString());
 		var nextNode1 = get(MyNodeLabels.inMarket.toString());
 		var inMarketChoice = new PlayerInteraction("Open Door", new Furniture(darTable, FurnitureTypes.Door), Icons.door, "Leave");
 		node.add(new Edge(inMarketChoice, nextNode1));
