@@ -5,7 +5,6 @@ public enum MyNodeLabels{
 	root,
 	streetNar,
 	manApp,
-	ask,
 	atkRec,
 	dontGowR,
 	askRecruiter,
