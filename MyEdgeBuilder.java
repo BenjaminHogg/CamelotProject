@@ -46,7 +46,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void manAppEdges() {
 		var node = get(MyNodeLabels.manApp.toString());
-		var nextNode1 = get(MyNodeLabels.ask.toString());
+		var nextNode1 = get(MyNodeLabels.askRecruiter.toString());
 		var nextNode2 = get(MyNodeLabels.atkRec.toString());
 		var askChoice = new DialogChoice("What do you want?");
 		var attackChoice = new DialogChoice("ATTACK THE MAN");
@@ -56,14 +56,12 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void askRecruiterEdges() {
 		var node = get(MyNodeLabels.askRecruiter.toString());
-		var nextNode1 = get(MyNodeLabels.dontGowR.toString());
-		var dontGoChoice = new DialogChoice("No I have no idea what you're talking about. Leave me be.");
-		node.add(new Edge(dontGoChoice, nextNode1));
-		//Other edge goes to Dark Table
-		//Christian Maron
+		var joinChoice = new DialogChoice("I'm in.");
 		var nextNode2 = get(MyNodeLabels.darkTable.toString());
-		var joinChoice = new DialogChoice("I'll join");
 		node.add(new Edge(joinChoice, nextNode2));
+		var dontGoChoice = new DialogChoice("No I have no idea what you're talking about. Leave me be.");
+		var nextNode1 = get(MyNodeLabels.dontGowR.toString());
+		node.add(new Edge(dontGoChoice, nextNode1));
 	}
 	@BuilderMethod
 	public void attackRecruiterEdges() {
@@ -412,3 +410,4 @@ public class MyEdgeBuilder extends NodeBuilder {
 
 	
 
+	
