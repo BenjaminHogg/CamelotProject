@@ -122,32 +122,34 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void arthurChoice() {
 	var arthur = get(MyNodeLabels.arthur.toString());
+	arthur.clearSequence();
 	arthur
 	.add(new HideDialog())
 	.add(new DialogSequence(bandit1, player, 
-	.add(new DialogSequence(bandit1, player, 
-	List.of("Arthur has the famed blade Excalibur. If you wish to kill him, a swordright is hopeless. You must take him down from range. In order to do this, you must become skilled with a bow. You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), List.of("Continue")));
+	List.of("Arthur has the famed blade Excalibur. If you wish to kill him,\n a swordright is hopeless. You must take him down from range.\n In order to do this, you must become skilled with a bow.\n You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), List.of("Visit the Fletcher.")));
 		
 	}
 	//Christian Maron
 	@BuilderMethod
 	public void lancelotChoice() {
 	var lancelot = get(MyNodeLabels.lancelot.toString());
-	lancelot.add(new DialogSequence(bandit2, player,
+	lancelot.clearSequence();
+	lancelot.add(new HideDialog()).add(new Face(bandit2,player)).add(new DialogSequence(bandit2, player,
 	List.of("Lancelot is Arthurs right hand man. "
 	+ "If you can take him out, Arthur is surely done for. "
 	+ "To defeat him, you must become a skilled swordsman. "
-	+ "Head to the armory and pick your gear"), List.of("Next")));
+	+ "Head to the armory and pick your gear"), List.of("Go to the armory.")));
 	}
 	//Christian Maron
 	@BuilderMethod
 	public void merlinChoice() {
 	var merlin = get(MyNodeLabels.merlin.toString());
-	merlin.add(new DialogSequence(bandit3, player, 
+	merlin.clearSequence();
+	merlin.add(new HideDialog()).add(new Face(bandit3,player)).add(new DialogSequence(bandit3, player, 
 	List.of("To kill merlin, you must learn the art of wizardry. "
 	+ "Merlin will not be slain by a sword, but can be killed by magic. "
 	+ "You must devise a plan to do this. "
-	+ "How will you take out merlin?"),List.of("Next")));
+	+ "How will you take out merlin?"),List.of("Learn about potions.", "Learn the dark arts.")));
 	}
 
 	
