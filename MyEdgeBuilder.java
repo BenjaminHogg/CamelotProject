@@ -94,9 +94,9 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var nextNode3 = get(MyNodeLabels.merlin.toString());
 		var merlinChoice = new DialogChoice("Challenge Merlin.");
 		node.add(new Edge(merlinChoice, nextNode3));
-		
+	
 		//Joseph Maggio
-		var armoryNode = get(MyNodeLabels.armory.toString());
+		/*var armoryNode = get(MyNodeLabels.armory.toString());
     		var armoryChoice = new DialogChoice("Visit the Armory.");
     		node.add(new Edge(armoryChoice, armoryNode));
 
@@ -106,7 +106,31 @@ public class MyEdgeBuilder extends NodeBuilder {
 
     		var warlordWeaponNode = get(MyNodeLabels.warlordWeapon.toString());
     		var warlordWeaponChoice = new DialogChoice("Select Your Warlord Weapon.");
-    		node.add(new Edge(warlordWeaponChoice, warlordWeaponNode));
+    		node.add(new Edge(warlordWeaponChoice, warlordWeaponNode));*/
+	}
+	@BuilderMethod
+	public void ArthurEdges() {
+		var node = get(MyNodeLabels.arthur.toString());
+		var nextNode1 = get(MyNodeLabels.fletcher.toString());
+		var continueChoice = new DialogChoice("Visit the Fletcher.");
+		node.add(new Edge(continueChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void LancelotEdges() {
+		var node = get(MyNodeLabels.lancelot.toString());
+		var nextNode1 = get(MyNodeLabels.armory.toString());
+		var continueChoice = new DialogChoice("Go to the armory.");
+		node.add(new Edge(continueChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void MerlinEdges() {
+		var node = get(MyNodeLabels.merlin.toString());
+		var nextNode1 = get(MyNodeLabels.potion.toString());
+		var nextNode2 = get(MyNodeLabels.darkArts.toString());
+		var continueChoice = new DialogChoice("Learn about potions.");
+		var darkartsChoice = new DialogChoice("Learn the dark arts.");
+		node.add(new Edge(continueChoice, nextNode1));
+		node.add(new Edge(darkartsChoice, nextNode2));
 	}
 	//Benjamin Hogg	
 	@BuilderMethod
