@@ -163,22 +163,23 @@ public class MyNodeBuilder extends NodeBuilder {
 	var armoryNode = get(MyNodeLabels.armory.toString());
     	armoryNode.clearSequence();
     	//Benjamin Hogg
-    	armoryNode.add(new CreateAll(List.of(armory, halberd, tankArmor, Blunderbussitem, axe, mace, dagger)))
+    	armoryNode.add(new HideDialog()).add(new FadeOut()).add(new CreateAll(List.of(armory, Ally, halberd, tankArmor, Blunderbussitem, axe, mace, dagger)))
     	.add(new SetPosition(player, armory, "Door")).add(new SetPosition(Ally, armory, "Anvil"));
-    
-    	// Set the scene
-    	armoryNode.add(new HideMenu())
-              .add(new EnableInput())
+        armoryNode
               .add(new FadeIn())
               .add(new NarrationSequence("In the armory, your ally explains to you that there are many different ways you can approach a swordfight. "
                 + "He says that you can either be a tank, focusing your style on defense, armor, and shields, "
                 + "you can be an assassin, focusing on dexterity and agility, "
                 + "or you can be what he refers to as a warlord, with a more aggressive fighting style and putting your trust in your violent weaponry."));
-
-    	// Present choices
-    	armoryNode.add(new DialogSequence(Ally, player, 
-            List.of("Which path will you take?"), 
-            List.of("Tank", "Assassin", "Warlord")));
+	}
+	
+	@BuilderMethod
+	public void ArmoryChoices() {
+		var armoryChoicesNode = get(MyNodeLabels.armoryChoices.toString());
+		armoryChoicesNode.clearSequence();
+		armoryChoicesNode.add(new HideNarration()).add(new Face(Ally, player)).add(new DialogSequence(Ally, player, 
+		            List.of("Which path will you take?"), 
+		            List.of("Tank", "Assassin", "Warlord")));
 	}
 
 	//Joseph Maggio
