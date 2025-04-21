@@ -82,9 +82,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		atkRec.clearSequence();
 		atkRec.add(new HideDialog())
 		.add(new Attack(player, Recruiter, true)).add(new Attack(Recruiter, player, false))
-		.add(new Die(player));
-	
-		
+		.add(new Die(player)).add(new NarrationSequence("You have been taken by force."));		
 		
 		//Recruiter brings the player to the Dark Table
 	}
@@ -93,14 +91,15 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void dontGoWithRecruiter() {
 		var dontGowR = get(MyNodeLabels.dontGowR.toString());
 		dontGowR.clearSequence();
-		dontGowR.add(new HideDialog()).add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut());
+		dontGowR.add(new HideDialog()).add(new Attack(Recruiter, player, false)).add(new Die(player)).add(new FadeOut())
+		.add(new NarrationSequence("You have been taken by force."));
 	}
 		//Christian Maron
 	@BuilderMethod
 	public void theDarkTable() {
 	var darkTable = get(MyNodeLabels.darkTable.toString());
 	
-	darkTable.add(new HideDialog())
+	darkTable.add(new HideDialog()).add(new HideNarration())
 	.add(new FadeOut())
 	.add(new CreateAll(List.of(darTable)))
 	.add(new CreateCharacterSequence(bandit1))
@@ -116,10 +115,9 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new DialogSequence(bandit1, player,
 	List.of("We are tired of how the kingdom is" +
 	"We need you to bring the head of one prominent figure."
-	+ "The choice is yours."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));
-		
-		
+	+ "The choice is yours."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));	
 	}
+	
 	//Christian Maron
 	@BuilderMethod
 	public void arthurChoice() {
