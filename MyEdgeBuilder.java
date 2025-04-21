@@ -67,8 +67,16 @@ public class MyEdgeBuilder extends NodeBuilder {
 	public void attackRecruiterEdges() {
 		var node = get(MyNodeLabels.atkRec.toString());
 		var nextNode1 = get(MyNodeLabels.darkTable.toString());
-		var attackChoice = new DialogChoice("You have been taken by force.");
+		var attackChoice = new CloseNarrationChoice();
 		node.add(new Edge(attackChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void dontGoEdges() {
+		var node = get(MyNodeLabels.dontGowR.toString());
+		var nextNode1 = get(MyNodeLabels.darkTable.toString());
+		var dontGoChoice = new CloseNarrationChoice();
+		node.add(new Edge(dontGoChoice, nextNode1));
 	}
 
 	@BuilderMethod
