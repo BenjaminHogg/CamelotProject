@@ -185,20 +185,20 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void fletcher(){
     		var fletcherNode = get(MyNodeLabels.fletcher.toString());
-    		fletcherNode.clearSequence();
-    
-    		// Set the scene
-    		fletcherNode.add(new HideMenu())
-                	.add(new EnableInput())
-                	.add(new FadeIn())
-                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
-                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
-                    	+ "He allows you to choose what to tackle first."));
+    		
+    		//fletcherNode.clearSequence();
+    		
+    	fletcherNode.add(new FadeOut())
+    	.add(new CreateAll(List.of(armory))
+    	.add(new CreateCharacterSequence(fletcher)))
+    	.add(new SetPosition(fletcher, armory, "Anvil"))
+    	.add(new SetCameraFocus(player))
+    	.add(new FadeIn())
+    	.add(new DialogSequence(fletcher,player,List.of("To master Archery,"
+    	+ " you must learn everything "
+    	+ "about a bow and arrow, where do you want to start")
+    	,List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
 
-    	// Present choices
-    	fletcherNode.add(new DialogSequence(fletcher, player, 
-            	List.of("What do you want to learn first?"), 
-            	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
 	}
 	//Joseph Maggio
 	@BuilderMethod
