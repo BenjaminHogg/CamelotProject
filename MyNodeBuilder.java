@@ -227,21 +227,33 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void tankWeaponSelection() {
 		var tankWeaponNode = get(MyNodeLabels.tankWeaponNode.toString());
 		tankWeaponNode.clearSequence();
-		tankWeaponNode.add(new WalkTo(Ally, armory, "Chest")).add(new Unpocket(Ally, halberd));
+		tankWeaponNode.add(new HideDialog()).add(new WalkTo(Ally, armory, "Chest")).add(new Unpocket(Ally, halberd)).add(new Face(Ally, player));
 	}
 	@BuilderMethod
 	public void takeHalberd() {
 		var takehal = get(MyNodeLabels.takeHal.toString());
-		takehal.add(new Give(Ally, halberd, player)).add(new Give(Ally, tankArmor, player)).add(new SetClothing(player, Clothing.HeavyArmour))
-		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Meet me out back."), List.of("")));
+		takehal.add(new Give(Ally, halberd, player)).add(new Give(Ally, tankArmor, player)).add(new Unpocket(player, halberd)).add(new SetClothing(player, Clothing.HeavyArmour))
+		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Go back to the Dark Table. The men will assist you further from there."), List.of("Ok")));
+	}
+	
+	@BuilderMethod
+	public void leaveArmory() {
+		var leaveArmNode = get(MyNodeLabels.leaveArm.toString());
+		leaveArmNode.add(new HideDialog());
 	}
 	
 	@BuilderMethod
 	public void explainDuel() {
 		var expDuel = get(MyNodeLabels.expDuel.toString());
 		expDuel.add(new FadeIn()).add(new SetPosition(player, darTable, "Door"))
-		.add(new DialogSequence(bandit1, player, List.of("We have recieved word that Lancelot will be in the market tonight. We think this would"
-				+ "be a goot time to strike. A duel in the streets would make a statement and accomplish our goal. Get it done."), List.of("Next")));
+		.add(new Face(bandit1, player)).add(new DialogSequence(bandit1, player, List.of("We have recieved word that Lancelot will be in the market tonight. We think this would "
+				+ "be a goot time to strike. A duel in the streets would make a statement and accomplish our goal. Get it done."), List.of("Works for me I guess.")));
+	}
+	
+	@BuilderMethod
+	public void LeaveforDuel() {
+		var leaveforDuel = get(MyNodeLabels.leaveforDuel.toString());
+		leaveforDuel.add(new HideDialog());
 	}
 	
 	@BuilderMethod
