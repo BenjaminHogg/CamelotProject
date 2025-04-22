@@ -47,5 +47,5 @@ public enum MyNodeLabels{
 	merlinDeath,
 	waraxe,
 	chainmace,
-	agilityAndStealth
+	agilityAndStealth, armoryChoices, leaveArm, leaveforDuel, theend, givedagger, leaveArmDagger, talktomerc, walktotrain, leavecamp, merctraining2,
 }
