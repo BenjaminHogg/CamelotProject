@@ -262,32 +262,82 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void TheDuelEdges() {
 		var node = get(MyNodeLabels.duel.toString());
-		var nextNode1 = get(MyNodeLabels.duel.toString());
-		var duelChoice = new PlayerInteraction(player, "Exit", new Furniture(ambushStreet, FurnitureTypes.Exit));
+		var nextNode1 = get(MyNodeLabels.returnToTable.toString());
+		var duelChoice = new PlayerInteraction(player, "Exit", new Furniture(market, FurnitureTypes.Exit));
 		node.add(new Edge(duelChoice, nextNode1));
+	}
+	
+	@BuilderMethod
+	public void returnToTableEdges() {
+		var node = get(MyNodeLabels.returnToTable.toString());
+		var nextNode1 = get(MyNodeLabels.theend.toString());
+		var endchoice = new DialogChoice("The End");
+		node.add(new Edge(endchoice, nextNode1));
 	}
 	
 	@BuilderMethod
 	public void AssassinEdges() {
 		var node = get(MyNodeLabels.assassinWeaponNode.toString()); 
-		var nextNode1 = get(MyNodeLabels.mercenary.toString());
-		var mercenaryChoice = new PlayerInteraction("Open Door", new Furniture(armory, FurnitureTypes.Backdoor), Icons.door, "Leave");
+		var nextNode1 = get(MyNodeLabels.givedagger.toString());
+		var takeHalChoice = new PlayerInteraction("Take dagger", Ally, Icons.hand, "Take dagger" );
+		node.add(new Edge(takeHalChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void takeDaggerEdges() {
+		var node = get(MyNodeLabels.givedagger.toString()); 
+		var nextNode1 = get(MyNodeLabels.leaveArmDagger.toString());
+		var mercenaryChoice = new DialogChoice("Thanks");
 		node.add(new Edge(mercenaryChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void leaveArmDaggerEdges() {
+		var node = get(MyNodeLabels.leaveArmDagger.toString());
+		var nextNode1 = get(MyNodeLabels.mercenary.toString());
+		var Choice = new PlayerInteraction("Open Door", new Furniture(armory, FurnitureTypes.Door), Icons.door, "Leave");
+		node.add(new Edge(Choice, nextNode1));
 	}
 	
 	@BuilderMethod
 	public void MercenaryEdges() {
 		var node = get(MyNodeLabels.mercenary.toString());
-		var nextNode1 = get(MyNodeLabels.mercTraining.toString());
-		var mercTrainingChoice = new PlayerInteraction("Talk to Mercenary", Mercenary, Icons.talk, "Confront Lancelot");
+		var nextNode1 = get(MyNodeLabels.talktomerc.toString());
+		var mercTrainingChoice = new PlayerInteraction("Talk to Mercenary", Mercenary, Icons.talk, "Talk");
 		node.add(new Edge(mercTrainingChoice, nextNode1));
 	}
-	
-	@BuilderMethod public void MercTrainingEdges() {
+	@BuilderMethod
+	public void talktomercEdges() {
+		var node = get(MyNodeLabels.talktomerc.toString());
+		var nextNode1 = get(MyNodeLabels.walktotrain.toString());
+		var mercTrainingChoice = new DialogChoice("Ok");
+		node.add(new Edge(mercTrainingChoice, nextNode1));
+	}
+	@BuilderMethod
+	public void walktotrainEdges() {
+		var node = get(MyNodeLabels.walktotrain.toString());
+		var nextNode1 = get(MyNodeLabels.mercTraining.toString());
+		var mercTrainingChoice = new PlayerInteraction("Talk to Mercenary", Mercenary, Icons.talk, "Talk");
+		node.add(new Edge(mercTrainingChoice, nextNode1));
+	}
+	@BuilderMethod 
+	public void MercTrainingEdges() {
 		var node = get(MyNodeLabels.mercTraining.toString());
-		var nextNode1 = get(MyNodeLabels.expDuel.toString());
-		var toDuelfromMerc = new PlayerInteraction(player, "Mercenary Camp", new Furniture(mercenaryCamp, FurnitureTypes.Exit));
+		var nextNode1 = get(MyNodeLabels.merctraining2.toString());
+		var toDuelfromMerc = new DialogChoice("Ok, I will.");
 		node.add(new Edge(toDuelfromMerc, nextNode1));
+	}
+	@BuilderMethod 
+	public void MercTraining2Edges() {
+		var node = get(MyNodeLabels.merctraining2.toString());
+		var nextNode1 = get(MyNodeLabels.leavecamp.toString());
+		var toDuelfromMerc = new DialogChoice("Thanks");
+		node.add(new Edge(toDuelfromMerc, nextNode1));
+	}
+	@BuilderMethod 
+	public void leavecampEdges() {
+		var node = get(MyNodeLabels.leavecamp.toString());
+		var nextNode1 = get(MyNodeLabels.expDuel.toString());
+		var duelChoice = new PlayerInteraction(player, "Exit", new Furniture(mercenaryCamp, FurnitureTypes.Exit));
+		node.add(new Edge(duelChoice, nextNode1));
 	}
 	//Christian Maron
 	@BuilderMethod
