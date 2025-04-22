@@ -12,7 +12,7 @@ public final class MyStoryEntities {
 	//import static myclassproject.mystorygraph.MyStoryEntities.*;
 	
 	//Benjamin Hogg
-	public static final Characters player = new Characters("player", BodyTypes.F, Clothing.Beggar, HairStyle.Short_Full, Colors.Brown, 6);
+	public static final Characters player = new Characters("Jimbo", BodyTypes.F, Clothing.Beggar, HairStyle.Short_Full, Colors.Brown, 6);
 	public static final Characters TownPerson1 = new Characters("TownPerson1", BodyTypes.H, Clothing.Peasant, HairStyle.Short, Colors.Gray, 4);
 	public static final Characters TownPerson2 = new Characters("TownPerson2", BodyTypes.G, Clothing.Peasant, HairStyle.Short, Colors.Gray, 4);
 	public static final Characters TownPerson3 = new Characters("TownPerson3", BodyTypes.B, Clothing.Peasant, HairStyle.Long, Colors.Black, 6);
@@ -20,9 +20,9 @@ public final class MyStoryEntities {
 	public static final Item bottle = new Item("bottle", ItemTypes.Bottle);
 	public static final Place city = new Place("city", PlaceTypes.City);
 	public static final Place armory = new Place("armory", PlaceTypes.Blacksmith);
-	public static final Characters lancelot = new Characters("lancelot", BodyTypes.D, Clothing.King, HairStyle.Musketeer, Colors.Black, 5);
-	public static final Characters Ally = new Characters("Ally", BodyTypes.D, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
-	public static final Characters Mercenary = new Characters("mercenary", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
+	public static final Characters lancelot = new Characters("Lancelot", BodyTypes.D, Clothing.King, HairStyle.Musketeer, Colors.Black, 5);
+	public static final Characters Ally = new Characters("Glorbis", BodyTypes.D, Clothing.LightArmour, HairStyle.Short, Colors.Brown, 5);
+	public static final Characters Mercenary = new Characters("Chad", BodyTypes.D, Clothing.Bandit, HairStyle.Bald, Colors.Black, 5);
 	public static final Place mercenaryCamp = new Place("mercenaryCamp", PlaceTypes.Camp);
 	public static final Place ambushStreet = new Place("ambushStreet", PlaceTypes.Courtyard);
 	public static final Item halberd = new Item("halberd", ItemTypes.Bread);
@@ -30,7 +30,7 @@ public final class MyStoryEntities {
 	public static final Item Blunderbussitem = new Item("Blunderbussitem", ItemTypes.ChickenLeg);
 	public static final Item axe = new Item("axe", ItemTypes.Hammer);
 	public static final Item mace = new Item("mace", ItemTypes.Torch);
-	public static final Item dagger = new Item("dagger", ItemTypes.Sword);
+	public static final Item dagger = new Item("dagger", ItemTypes.Bread);
 	public static final Place market = new Place("market", PlaceTypes.Courtyard);
 	public static final Characters marketPerson1 = new Characters("marketPerson1", BodyTypes.D, Clothing.Peasant, HairStyle.Short, Colors.Gray, 4);
 	public static final Characters marketPerson2 = new Characters("marketPerson2", BodyTypes.G, Clothing.Peasant, HairStyle.Short, Colors.Gray, 3);
@@ -41,9 +41,9 @@ public final class MyStoryEntities {
 	public static final Item blade = new Item("blade", ItemTypes.Sword);
 	
 	//Christian Maron
-	public static final Characters bandit1 = new Characters("bandit1", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
-	public static final Characters bandit2 = new Characters("bandit2", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
-	public static final Characters bandit3 = new Characters("bandit3", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Characters bandit1 = new Characters("Greg", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Characters bandit2 = new Characters("Mort", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
+	public static final Characters bandit3 = new Characters("Bob", BodyTypes.D, Clothing.LightArmour, HairStyle.Long, Colors.Black, 5);
 	public static final Place darTable = new Place("DarTable", PlaceTypes.DiningRoom);
 
 
