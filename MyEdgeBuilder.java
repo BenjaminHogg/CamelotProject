@@ -8,8 +8,6 @@ import com.storygraph.*;
 import com.entities.*;
 import com.enums.FurnitureTypes;
 
-import myclassproject.questexample.NodeLabels;
-
 import static myclassproject.mystorygraph.MyStoryEntities.*;
 
 public class MyEdgeBuilder extends NodeBuilder {
@@ -132,6 +130,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		node.add(new Edge(continueChoice, nextNode1));
 		node.add(new Edge(darkartsChoice, nextNode2));
 	}
+	
 	@BuilderMethod
 	public void ArmoryNar() {
 		var node = get(MyNodeLabels.armory.toString());
@@ -153,7 +152,10 @@ public class MyEdgeBuilder extends NodeBuilder {
 		node.add(new Edge(assassinChoice, nextNode2));
 		node.add(new Edge(warlordChoice, nextNode3));
 	}
+	
 	//Benjamin Hogg	
+	
+	
 	@BuilderMethod
 	public void WarlordEdges() {
 		var node = get(MyNodeLabels.warlordWeapon.toString());
@@ -239,7 +241,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void ExpDuelEdges() {
 		var node = get(MyNodeLabels.expDuel.toString());
-		var nextNode1 = get(MyNodeLabels.inMarket.toString());
+		var nextNode1 = get(MyNodeLabels.leaveforDuel.toString());
 		var inMarketChoice = new DialogChoice("Works for me I guess.");
 		node.add(new Edge(inMarketChoice, nextNode1));
 	}
@@ -251,6 +253,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var inMarketChoice = new PlayerInteraction("Open Door", new Furniture(darTable, FurnitureTypes.Door), Icons.door, "Leave");
 		node.add(new Edge(inMarketChoice, nextNode1));
 	}
+	
 	@BuilderMethod
 	public void InMarketEdges() {
 		var node = get(MyNodeLabels.inMarket.toString());
@@ -274,6 +277,14 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var endchoice = new DialogChoice("The End");
 		node.add(new Edge(endchoice, nextNode1));
 	}
+	
+	/*@BuilderMethod
+	public void theEndEdges() {
+		var node = get(MyNodeLabels.theend.toString());
+		var nextNode1 = get(MyNodeLabels.streetNar.toString());
+		var endchoice = new MenuChoice(MenuChoice.Options.Start);
+		node.add(new Edge(endchoice, nextNode1));
+	}*/
 	
 	@BuilderMethod
 	public void AssassinEdges() {
@@ -340,7 +351,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		node.add(new Edge(duelChoice, nextNode1));
 	}
 	//Christian Maron
-	@BuilderMethod
+	/*@BuilderMethod
 	public void merlinChoiceEdge(){
 		var node = get(MyNodeLabels.merlin.toString());
 		var nextNode1 = get(MyNodeLabels.potion.toString());
@@ -349,7 +360,7 @@ public class MyEdgeBuilder extends NodeBuilder {
 		var darkArtsChoice = new DialogChoice("Take on Merlin with dark arts.");
 		node.add(new Edge(potionChoice, nextNode1));
 		node.add(new Edge(darkArtsChoice, nextNode2));
-	}
+	}*/
 	
 	
 	@BuilderMethod
@@ -529,4 +540,3 @@ public class MyEdgeBuilder extends NodeBuilder {
 
 	
 
-	
