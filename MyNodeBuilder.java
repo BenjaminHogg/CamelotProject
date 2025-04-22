@@ -113,9 +113,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new FadeIn())
 	.add(new Face(bandit1, player))
 	.add(new DialogSequence(bandit1, player,
-	List.of("We are tired of how the kingdom is" +
-	"We need you to bring the head of one prominent figure."
-	+ "The choice is yours."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));	
+	List.of("We need you to bring the head of one prominent figure."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));	
 	}
 	
 	//Christian Maron
@@ -135,7 +133,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	var lancelot = get(MyNodeLabels.lancelot.toString());
 	lancelot.clearSequence();
 	lancelot.add(new HideDialog()).add(new Face(bandit2,player)).add(new DialogSequence(bandit2, player,
-	List.of("Lancelot is Arthurs right hand man. "
+	List.of("Lancelot is Arthur's right hand man. "
 	+ "If you can take him out, Arthur is surely done for. "
 	+ "To defeat him, you must become a skilled swordsman. "
 	+ "Head to the armory and pick your gear"), List.of("Go to the armory.")));
@@ -163,14 +161,13 @@ public class MyNodeBuilder extends NodeBuilder {
 	var armoryNode = get(MyNodeLabels.armory.toString());
     	armoryNode.clearSequence();
     	//Benjamin Hogg
-    	armoryNode.add(new HideDialog()).add(new FadeOut()).add(new CreateAll(List.of(armory, Ally, halberd, tankArmor, Blunderbussitem, axe, mace, dagger)))
+    	armoryNode.add(new CreateCharacterSequence(Ally)).add(new HideDialog()).add(new FadeOut()).add(new CreateAll(List.of(armory, halberd, tankArmor, Blunderbussitem, axe, mace, dagger)))
     	.add(new SetPosition(player, armory, "Door")).add(new SetPosition(Ally, armory, "Anvil"));
         armoryNode
               .add(new FadeIn())
               .add(new NarrationSequence("In the armory, your ally explains to you that there are many different ways you can approach a swordfight. "
-                + "He says that you can either be a tank, focusing your style on defense, armor, and shields, "
-                + "you can be an assassin, focusing on dexterity and agility, "
-                + "or you can be what he refers to as a warlord, with a more aggressive fighting style and putting your trust in your violent weaponry."));
+                + "He says that you can either be a tank, focusing your style on defense, armor, and shields - The more aggressive, brutal, approach. "
+                + "Or you can be an assassin focusing on dexterity and agility - the more finessed approach."));
 	}
 	
 	@BuilderMethod
@@ -179,7 +176,7 @@ public class MyNodeBuilder extends NodeBuilder {
 		armoryChoicesNode.clearSequence();
 		armoryChoicesNode.add(new HideNarration()).add(new Face(Ally, player)).add(new DialogSequence(Ally, player, 
 		            List.of("Which path will you take?"), 
-		            List.of("Tank", "Assassin", "Warlord")));
+		            List.of("Tank", "Assassin")));
 	}
 
 	//Joseph Maggio
@@ -233,7 +230,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void takeHalberd() {
 		var takehal = get(MyNodeLabels.takeHal.toString());
 		takehal.add(new Give(Ally, halberd, player)).add(new Give(Ally, tankArmor, player)).add(new Unpocket(player, halberd)).add(new SetClothing(player, Clothing.HeavyArmour))
-		.add(new DialogSequence(armorer, player, List.of("Suits you well. Lets get back to the Dark Table and get ready to move. Go back to the Dark Table. The men will assist you further from there."), List.of("Ok")));
+		.add(new DialogSequence(armorer, player, List.of("Suits you well. Let's get back to the Dark Table and get ready to move. The men will assist you further from there."), List.of("Ok")));
 	}
 	
 	@BuilderMethod
@@ -245,7 +242,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void explainDuel() {
 		var expDuel = get(MyNodeLabels.expDuel.toString());
-		expDuel.add(new FadeIn()).add(new SetPosition(player, darTable, "Door"))
+		expDuel.add(new FadeOut()).add(new FadeIn()).add(new SetPosition(player, darTable, "Door"))
 		.add(new Face(bandit1, player)).add(new DialogSequence(bandit1, player, List.of("We have recieved word that Lancelot will be in the market tonight. We think this would "
 				+ "be a goot time to strike. A duel in the streets would make a statement and accomplish our goal. Get it done."), List.of("Works for me I guess.")));
 	}
@@ -259,15 +256,20 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void prepareForDuel() {
 		var inMarket = get(MyNodeLabels.inMarket.toString());
-		inMarket.add(new CreateAll(List.of(market, lancelot, marketPerson1, marketPerson2, marketPerson3, sword)))
-		.add(new SetPosition(player, market, "Gate")).add(new SetPosition(lancelot, market, "Exit")).add(new SetPosition(marketPerson1, market, "Target"))
-		.add(new SetPosition(marketPerson2, market, "BigStall")).add(new SetPosition(marketPerson3, market, "SmallStall"));
+		inMarket.clearSequence();
+		inMarket.add(new FadeOut()).add(new PlaySound("OpenDoor1")).add(new CreateAll(List.of(market, sword)))
+		.add(new CreateCharacterSequence(marketPerson1))
+		.add(new CreateCharacterSequence(marketPerson2))
+		.add(new CreateCharacterSequence(marketPerson3))
+		.add(new CreateCharacterSequence(lancelot))
+		.add(new SetPosition(player, market, "Gate")).add(new SetNight()).add(new SetPosition(lancelot, market, "Exit")).add(new SetPosition(marketPerson1, market, "Target"))
+		.add(new SetPosition(marketPerson2, market, "BigStall")).add(new SetPosition(marketPerson3, market, "SmallStall")).add(new FadeIn());
 	}
 	
 	@BuilderMethod
 	public void theDuel() {
 		var duel = get(MyNodeLabels.duel.toString());
-		duel.add(new Draw(lancelot, sword)).add(new Draw(player, halberd)).add(new SetNight())
+		duel.add(new Draw(lancelot, sword)).add(new Draw(player, halberd))
 		.add(new Attack(player, lancelot, true)).add(new Attack(lancelot, player, false)).add(new Attack(player, lancelot, false))
 		.add(new Die(lancelot));
 	}
@@ -275,8 +277,14 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void returnToDarkTable() {
 		var returnToTable = get(MyNodeLabels.returnToTable.toString());
-		returnToTable.add(new SetPosition(player, darTable, "Door")).add(new WalkTo(bandit1, darTable, "Door"))
-		.add(new DialogSequence(bandit1, player, List.of("Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate."), List.of("Next")));;
+		returnToTable.add(new FadeOut()).add(new PlaySound("OpenDoor2")).add(new SetPosition(player, darTable, "Door")).add(new FadeIn()).add(new WalkTo(bandit1, player))
+		.add(new Face(bandit1, player)).add(new DialogSequence(bandit1, player, List.of("Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate."), List.of("The End")));;
+	}
+	
+	@BuilderMethod
+	public void theEnd() {
+		var theend = get(MyNodeLabels.theend.toString());
+		theend.add(new HideDialog()).add(new FadeOut());
 	}
 	//Maybe make a training sequence for the different weapons eventually. 
 	@BuilderMethod
@@ -330,25 +338,56 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void assassinWeaponSelection() {
 		var assassinWeaponNode = get(MyNodeLabels.assassinWeaponNode.toString());
 		assassinWeaponNode.clearSequence();
-		assassinWeaponNode.add(new WalkTo(Ally, armory, "Backdoor")).add(new Give(Ally, dagger, player));
+		assassinWeaponNode.add(new HideDialog()).add(new WalkTo(Ally, armory, "Anvil")).add(new Unpocket(Ally, dagger));
+	}
+	@BuilderMethod
+	public void giveDagger() {
+		var givedagger = get(MyNodeLabels.givedagger.toString());
+		givedagger.add(new Give(Ally, dagger, player)).add(new Draw(player, dagger)).add(new DialogSequence(Ally, player, List.of("Here take this dagger. Now go meet the famed mercenary at his camp. There he will train you."), List.of("Thanks")));
+	}
+	@BuilderMethod
+	public void LeaveArmDagger() {
+		var leaveArmDagger = get(MyNodeLabels.leaveArmDagger.toString());
+		leaveArmDagger.add(new HideDialog());
 	}
 	//Maybe add a node or something where the armorer explains the mercenary eventually
 	@BuilderMethod
 	public void TheMercenary() {
 		var mercenary = get(MyNodeLabels.mercenary.toString());
-		mercenary.add(new CreateAll(List.of(mercenaryCamp, Mercenary, blade)))
+		mercenary.add(new FadeOut()).add(new PlaySound("OpenDoor1")).add(new CreateAll(List.of(mercenaryCamp, blade)))
+		.add(new CreateCharacterSequence(Mercenary))
 		.add(new SetPosition(player, mercenaryCamp, "Exit")).add(new SetPosition(Mercenary, mercenaryCamp, "Chest"))
-		.add(new DialogSequence(Mercenary, player, List.of("Always a pleasure to meet one of you dark table folks. So you wish to become an assassin? It will"
-				+ " be intese training. Meet me over by the barrel and we can begin."), List.of("Next"))).add(new WalkTo(Mercenary, mercenaryCamp, "Barrel"));
+		.add(new FadeIn());
+	}
+	@BuilderMethod
+	public void talktoMerc() {
+		var talktomerc = get(MyNodeLabels.talktomerc.toString());
+		talktomerc.add(new DialogSequence(Mercenary, player, List.of("Always a pleasure to meet one of you dark table folks. So you wish to become an assassin? It will"
+				+ " be intese training. Meet me over by the barrel and we can begin."), List.of("Ok")));
+	}
+	@BuilderMethod
+	public void walktoTrain() {
+		var walktotrain = get(MyNodeLabels.walktotrain.toString());
+		walktotrain.add(new HideDialog()).add(new WalkTo(Mercenary, mercenaryCamp, "Barrel")).add(new Face(Mercenary, player));
 	}
 	@BuilderMethod
 	public void MercenaryTraining() {
 		var mercTraining = get(MyNodeLabels.mercTraining.toString());
 		mercTraining.add(new Draw(Mercenary, blade)).add(new Attack(player, Mercenary, true))
 		.add(new Attack(player, Mercenary, true)).add(new Attack(Mercenary, player, false)).add(new DialogSequence(Mercenary, player, List.of("Focus kid. "
-				+ "Look for vunerabilities. Get me when I am at my weakest and strike with precision."), List.of("Next"))
-		.add(new Attack(Mercenary, player, true)).add(new Attack(player, Mercenary, false)).add(new Clap(Mercenary))
-		.add(new DialogSequence(Mercenary, player, List.of("Well done kid. Here take this. You are ready. Go get to work and make me proud."), List.of("Next"))).add(new SetClothing(player, Clothing.Bandit)));
+				+ "Look for vunerabilities. Get me when I am at my weakest and strike with precision."), List.of("Ok, I will.")));
+	}
+	@BuilderMethod
+	public void merctraining2Node() {
+		var merctraining2 = get(MyNodeLabels.merctraining2.toString());
+		merctraining2.add(new HideDialog()).add(new Attack(Mercenary, player, true)).add(new Attack(player, Mercenary, false)).add(new Clap(Mercenary))
+		.add(new SetClothing(player, Clothing.Bandit))
+		.add(new DialogSequence(Mercenary, player, List.of("Well done kid. Here take this. You are ready. Go get to work and make me proud."), List.of("Thanks")));
+	}
+	@BuilderMethod
+	public void leaveCamp() {
+		var leavecamp = get(MyNodeLabels.leavecamp.toString());
+		leavecamp.add(new HideDialog()).add(new Sheathe(player, dagger));
 	}
 	//Joseph Maggio
 	/*public void fletcher() {
