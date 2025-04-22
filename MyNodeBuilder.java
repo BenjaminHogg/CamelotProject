@@ -113,7 +113,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	.add(new FadeIn())
 	.add(new Face(bandit1, player))
 	.add(new DialogSequence(bandit1, player,
-	List.of("We need you to bring the head of one prominent figure."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));	
+	List.of("We need you to bring the head of one prominent figure to save the city."), List.of("Challenge Arthur.", "Challenge Lancelot.", "Challenge Merlin.")));	
 	}
 	
 	//Christian Maron
@@ -136,7 +136,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	List.of("Lancelot is Arthur's right hand man. "
 	+ "If you can take him out, Arthur is surely done for. "
 	+ "To defeat him, you must become a skilled swordsman. "
-	+ "Head to the armory and pick your gear"), List.of("Go to the armory.")));
+	+ "Head to the armory and pick your gear."), List.of("Go to the armory.")));
 	}
 	//Christian Maron
 	@BuilderMethod
@@ -149,11 +149,6 @@ public class MyNodeBuilder extends NodeBuilder {
 	+ "You must devise a plan to do this. "
 	+ "How will you take out merlin?"),List.of("Learn about potions.", "Learn the dark arts.")));
 	}
-
-	
-	
-	
-	
 	
 	//Joseph Maggio
 	@BuilderMethod
@@ -183,20 +178,20 @@ public class MyNodeBuilder extends NodeBuilder {
 	@BuilderMethod
 	public void fletcher(){
     		var fletcherNode = get(MyNodeLabels.fletcher.toString());
-    		
-    		//fletcherNode.clearSequence();
-    		
-    	fletcherNode.add(new FadeOut())
-    	.add(new CreateAll(List.of(armory))
-    	.add(new CreateCharacterSequence(fletcher)))
-    	.add(new SetPosition(fletcher, armory, "Anvil"))
-    	.add(new SetCameraFocus(player))
-    	.add(new FadeIn())
-    	.add(new DialogSequence(fletcher,player,List.of("To master Archery,"
-    	+ " you must learn everything "
-    	+ "about a bow and arrow, where do you want to start")
-    	,List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
+    		fletcherNode.clearSequence();
+    
+    		// Set the scene
+    		fletcherNode.add(new HideMenu())
+                	.add(new EnableInput())
+                	.add(new FadeIn())
+                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
+                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
+                    	+ "He allows you to choose what to tackle first."));
 
+    	// Present choices
+    	fletcherNode.add(new DialogSequence(fletcher, player, 
+            	List.of("What do you want to learn first?"), 
+            	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
 	}
 	//Joseph Maggio
 	@BuilderMethod
