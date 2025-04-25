@@ -50,7 +50,7 @@ public final class MyStoryEntities {
 	//Joseph Maggio
 	public static final Characters fletcher = new Characters("fletcher", BodyTypes.H, Clothing.LightArmour,HairStyle.Short, Colors.Brown,5);
 	public static final Characters arthur = new Characters("arthur",BodyTypes.F, Clothing.King, HairStyle.Spiky, Colors.Blonde,1);
-	public static final Characters merlin = new Characters("merlin", BodyTypes.A, Clothing.Priest, HairStyle.Mage,Colors.Gray,2);
+	public static final Characters merlin = new Characters("merlin", BodyTypes.H, Clothing.Priest, HairStyle.Mage_Full,Colors.Gray,2);
 	public static final Item bow = new Item("bow", ItemTypes.InkandQuill);
 	public static final Place darkTable = new Place("dark table", PlaceTypes.Dungeon);
 	public static final Place castleHall = new Place("castle hall", PlaceTypes.GreatHall);
@@ -63,9 +63,10 @@ public final class MyStoryEntities {
 	public static final Item potion = new Item("potion", ItemTypes.Bottle);
 	public static final Place potionRoom = new Place("Potion room", PlaceTypes.AlchemyShop);
 	public static final Characters darkArtsWarlock = new Characters("Dark arts Warlock",BodyTypes.F,Clothing.Warlock,HairStyle.Short,Colors.Red,2);
-	public static final Item wand = new Item("wand", ItemTypes.Apple);
-	public static final Place darkArtsRoom = new Place("dark arts room",PlaceTypes.Library);
-	public static final Place potionBattleArea = new Place("potion battle area", PlaceTypes.Ruins);
-	public static final Place darkArtsBattleArea = new Place("dark arts battle area", PlaceTypes.Ruins);
+	public static final Item wand1 = new Item("wand1", ItemTypes.Apple);
+	public static final Item wand = new Item("wand1", ItemTypes.Apple);
+	public static final Place darkArtsRoom = new Place("dark arts room",PlaceTypes.AlchemyShop);
+	public static final Place potionBattleArea = new Place("potion battle area", PlaceTypes.ForestPath);
+	public static final Place darkArtsBattleArea = new Place("dark arts battle area", PlaceTypes.ForestPath);
 	public static final Item sword = new Item("sword",ItemTypes.Sword);
 }
