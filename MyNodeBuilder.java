@@ -119,14 +119,15 @@ public class MyNodeBuilder extends NodeBuilder {
 	//Christian Maron
 	@BuilderMethod
 	public void arthurChoice() {
-	var arthur = get(MyNodeLabels.arthur.toString());
-	arthur.clearSequence();
-	arthur
-	.add(new HideDialog())
-	.add(new DialogSequence(bandit1, player, 
-	List.of("Arthur has the famed blade Excalibur. If you wish to kill him,\n a swordright is hopeless. You must take him down from range.\n In order to do this, you must become skilled with a bow.\n You must obtain a bow from the most famed fletcher, but this task is only the beggining." ), List.of("Visit the Fletcher.")));
-		
+	    var arthur = get(MyNodeLabels.arthur.toString());
+	    arthur.clearSequence();
+	    arthur.add(new HideDialog())
+	        .add(new EnableInput())
+	        .add(new DialogSequence(bandit1, player, 
+	            List.of("Arthur wields Excalibur. A swordfight would be suicide. You must learn archery from the fletcher to defeat him from range."), 
+	            List.of("Visit the Fletcher")));
 	}
+
 	//Christian Maron
 	@BuilderMethod
 	public void lancelotChoice() {
@@ -173,26 +174,33 @@ public class MyNodeBuilder extends NodeBuilder {
 		            List.of("Which path will you take?"), 
 		            List.of("Tank", "Assassin")));
 	}
-
-	//Joseph Maggio
 	@BuilderMethod
+	public void FletcherNar(){
+		var fletcherNar= get(MyNodeLabels.fletcherNar.toString());
+		fletcherNar.clearSequence();
+		fletcherNar.add(new HideMenu()).add(new HideDialog()).add(new FadeOut()).add(new FadeIn()).add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
+            	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
+            	+ "He allows you to choose what to tackle first."));
+		
+		
+	}
+	//Joseph Maggio
+	/*@BuilderMethod
 	public void fletcher(){
     		var fletcherNode = get(MyNodeLabels.fletcher.toString());
     		fletcherNode.clearSequence();
     
     		// Set the scene
     		fletcherNode.add(new HideMenu())
+    				.add(new HideNarration())
                 	.add(new EnableInput())
-                	.add(new FadeIn())
-                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
-                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
-                    	+ "He allows you to choose what to tackle first."));
+                	.add(new FadeIn());
 
     	// Present choices
     	fletcherNode.add(new DialogSequence(fletcher, player, 
             	List.of("What do you want to learn first?"), 
             	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
-	}
+	}*/
 	//Joseph Maggio
 	@BuilderMethod
 	public void warlordWeaponSelection() {
@@ -273,7 +281,7 @@ public class MyNodeBuilder extends NodeBuilder {
 	public void returnToDarkTable() {
 		var returnToTable = get(MyNodeLabels.returnToTable.toString());
 		returnToTable.add(new FadeOut()).add(new PlaySound("OpenDoor2")).add(new SetPosition(player, darTable, "Door")).add(new FadeIn()).add(new WalkTo(bandit1, player))
-		.add(new Face(bandit1, player)).add(new DialogSequence(bandit1, player, List.of("Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate."), List.of("The End")));;
+		.add(new Face(bandit1, player)).add(new Dance(player,bandit1)).add(new DialogSequence(bandit1, player, List.of("Congrats warrior. You've done a great thing tonight. Join us in a feast to celebrate."), List.of("The End")));;
 	}
 	
 	@BuilderMethod
@@ -384,71 +392,162 @@ public class MyNodeBuilder extends NodeBuilder {
 		var leavecamp = get(MyNodeLabels.leavecamp.toString());
 		leavecamp.add(new HideDialog()).add(new Sheathe(player, dagger));
 	}
-	//Joseph Maggio
-	/*public void fletcher() {
-    		var fletcherNode = get(NodeLabels.fletcher.toString());
-    		fletcherNode.clearSequence();
-
-    		fletcherNode.add(new HideMenu())
-                	.add(new FadeIn())
-                	.add(new NarrationSequence("The fletcher explains to you that to become skilled with a bow, you must understand all aspects of archery. "
-                    	+ "He wants to teach you the art of marksmanship, personal agility and stealth, bow stringing and crafting, and arrow making and imbuing. "
-                    	+ "He allows you to choose what to tackle first."))
-                	.add(new DialogSequence(Fletcher, player,
-                    	List.of("What would you like to learn first?"),
-                    	List.of("Marksmanship", "Agility and Stealth", "Crafting", "Arrow Making")));
-}*/		
+	
 	@BuilderMethod
-	public void arrowMaking() {
-    		var arrowMakingNode = get(MyNodeLabels.arrowMaking.toString());
+	public void fletcher() {
+	    var fletcherNode = get(MyNodeLabels.fletcher.toString());
+	    fletcherNode.clearSequence();
+	    fletcherNode.add(new FadeOut());
+	    fletcherNode.add(new HideDialog())
+	    	.add(new HideNarration())
+	        .add(new CreateAll(List.of(armory)))
+	        .add(new CreateCharacterSequence(fletcher))
+	        .add(new SetPosition(fletcher, armory, "Anvil"))
+	        .add(new SetPosition(player, armory, "Target"))  // Set player position
+	        .add(new SetCameraFocus(player))
+	        .add(new FadeIn())
+	        //.add(new WalkTo(fletcher, armory, "Target"))  // Make fletcher walk to player
+	        .add(new Face(fletcher, player))  // Make fletcher face player
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("To master Archery, you must learn everything about a bow and arrow. Where do you want to start?"),
+	            List.of("Marksmanship", "Arrow Making")));
+	}
+	
+	@BuilderMethod
+	public void arrowMakingNar() {
+	    var arrowMakingNar = get(MyNodeLabels.arrowMakingNar.toString());
+	    arrowMakingNar.clearSequence();
+	    arrowMakingNar.add(new HideMenu())
+	        .add(new HideDialog())
+	        .add(new HideNarration())
+	        .add(new FadeOut())
+	        .add(new FadeIn())
+	        .add(new NarrationSequence("The fletcher introduces you to the art of arrow making. He explains that a well-crafted arrow is just as important as a skilled archer. "
+	            + "You'll learn how to select the right materials, shape arrowheads, and fletch arrows for optimal flight. During this you are struct with a bow.you are told 'Focus! A bow is an extension of your body. You must understand its every curve and grain.' "));
+	}
+	
+@BuilderMethod	
+public void arrowMaking() {
+    	var arrowMakingNode = get(MyNodeLabels.arrowMaking.toString());
    		arrowMakingNode.clearSequence();
+   		arrowMakingNode.add(new HideNarration());
+ 
+   		arrowMakingNode.add(new FadeIn())
+   		.add(new HideDialog())
+        .add(new SetPosition(fletcher, armory, "Anvil"))
+        .add(new SetPosition(player, armory, "Target"))
+        .add(new Face(fletcher, player))
+        .add(new Attack(fletcher, player, false))
+        .add(new EnableInput())
 
-    		arrowMakingNode.add(new HideMenu())
-                .add(new FadeIn())
-        	.add(new NarrationSequence("The fletcher teaches you the process of shaping your arrowhead, fletching your arrow, and imbuing it with potions and poisons. "
-        	+ "The process is long and tedious, but you eventually become a master."))
-                .add(new DialogSequence(fletcher, player, List.of("What skill should you master next?"), List.of("Crafting", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
-}
-	@BuilderMethod
-	public void crafting() {
-    		var craftingNode = get(MyNodeLabels.crafting.toString());
-    		craftingNode.clearSequence();
-
-    		craftingNode.add(new HideMenu())
-                	.add(new FadeIn())
-                	.add(new NarrationSequence("The fletcher teaches you the art of carving your bow and stringing it. "
-                    	+ "There is an intense and in-depth process that comes with creating your bow. "
-                    	+ "Eventually, you create a beautiful weapon that suits you well. You give it a name."))
-                	.add(new DialogSequence(fletcher, player,
-                    	List.of("What skill should you master next?"),
-                    	List.of("Arrow Making", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
-}
-	@BuilderMethod
-	public void agilityAndStealth() {
-    		var agilityNode = get(MyNodeLabels.agilityAndStealth.toString());
-    		agilityNode.clearSequence();
-    		agilityNode.add(new HideMenu())
-               		.add(new FadeIn())
-               		.add(new NarrationSequence("After weeks of grueling physical training to meet the conditioning expectations of the fletcher, "
-                   	+ "he brings you hunting to teach you the art of stealth. After many failed hunts, you master the skill and can catch even a rabbit with your bare hands."))
-               		.add(new DialogSequence(fletcher, player,
-                   	List.of("What skill do you master next?"),
-                   	List.of("Marksmanship", "Crafting", "Arrow Making", "(Must be done with all four skills) Devise your plan")));
+        .add(new DialogSequence(fletcher, player, List.of("What skill should you master next?"), List.of("Marksmanship", "Im Ready.")));
 }
 
+	//@BuilderMethod
+	/*public void crafting() {
+	    var craftingNode = get(MyNodeLabels.crafting.toString());
+	    craftingNode.clearSequence();
+	    craftingNode.add(new HideDialog())
+	        .add(new FadeIn())
+	        .add(new SetPosition(fletcher, armory, "Anvil"))  // Set fletcher's initial position
+	        //.add(new SetPosition(player, armory, "Door"))  // Set player's position
+	        //.add(new WalkTo(fletcher, armory, "Door"))  // Walk to player
+	        .add(new Face(fletcher, player))
+	        .add(new Attack(fletcher, player, false))
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("The fletcher strikes you with a wooden training bow. 'Focus! A bow is an extension of your body. You must understand its every curve and grain.'"),
+	            List.of("Continue")))
+	        .add(new HideDialog())
+	        .add(new EnableInput())
+	        .add(new NarrationSequence("The fletcher teaches you the art of carving your bow and stringing it. "
+	            + "There is an intense and in-depth process that comes with creating your bow. "
+	            + "Eventually, you create a beautiful weapon that suits you well. You give it a name."))
+	        .add(new HideNarration())
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("What skill should you master next?"),
+	            List.of("Arrow Making", "Marksmanship", "Agility and Stealth", "(Must be done with all four skills) Devise your plan")));
+	}*/
+
+	//@BuilderMethod
+	/*public void agilityAndStealth() {
+	    var agilityNode = get(MyNodeLabels.agilityAndStealth.toString());
+	    agilityNode.clearSequence();
+	    agilityNode.add(new HideDialog())
+	        .add(new FadeIn())
+	        .add(new SetPosition(fletcher, armory, "Anvil"))  // Set fletcher's initial position
+	        //.add(new SetPosition(player, armory, "Door"))  // Set player's position
+	        .add(new WalkTo(fletcher, armory, "Door"))  // Walk to player
+	        .add(new Face(fletcher, player))
+	        .add(new Attack(fletcher, player, false))
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("The fletcher suddenly appears behind you and strikes. 'You must be like a shadow! An archer who cannot move unseen is a dead archer.'"),
+	            List.of("Continue")))
+	        .add(new HideDialog())
+	        .add(new EnableInput())
+	        .add(new NarrationSequence("After weeks of grueling physical training to meet the conditioning expectations of the fletcher, "
+	            + "he brings you hunting to teach you the art of stealth. After many failed hunts, you master the skill and can catch even a rabbit with your bare hands."))
+	        .add(new HideNarration())
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("What skill do you master next?"),
+	            List.of("Marksmanship", "Crafting", "Arrow Making", "(Must be done with all four skills) Devise your plan")));
+	}*/
+@BuilderMethod
+public void marksmanshipNar() {
+    var marksmanshipNar = get(MyNodeLabels.marksmanshipNar.toString());
+    marksmanshipNar.clearSequence();
+    marksmanshipNar.add(new HideMenu())
+        .add(new HideDialog())
+        .add(new FadeOut())
+        .add(new FadeIn())
+        .add(new NarrationSequence("The fletcher begins your marksmanship training. He explains that true mastery of the bow requires perfect form, steady breathing, and unwavering focus. "
+            + "You'll need to learn how to account for distance, wind, and movement to become a true marksman. You start with a weak stance, so the fletcher beats a new one into you"));
+}
 	@BuilderMethod
 	public void marksmanship() {
-    		var marksmanshipNode = get(MyNodeLabels.marksmanship.toString());
-    		marksmanshipNode.clearSequence();
-    		marksmanshipNode.add(new HideMenu())
-                    .add(new FadeIn())
-                    .add(new NarrationSequence("Here, the fletcher puts you through trials upon trials of target shooting. "
-                        + "He even comes up with more and more convoluted ways of testing your accuracy. "
-                        + "Eventually, you're able to outshoot even him in the trials. You have mastered the art."))
-                    .add(new DialogSequence(fletcher, player,
-                        List.of("What do you master next?"),
-                        List.of("Arrow Making", "Agility and Stealth", "Crafting", "(Must be done with all four skills) Devise your plan")));
-}
+	    var marksmanshipNode = get(MyNodeLabels.marksmanship.toString());
+	    marksmanshipNode.clearSequence();
+	    marksmanshipNode.add(new HideDialog())
+	    	.add(new HideNarration())
+	        .add(new FadeIn())
+	        .add(new SetPosition(fletcher, armory, "Anvil"))
+	        .add(new SetPosition(player, armory, "Door"))
+	        .add(new Face(fletcher, player))
+	        .add(new Attack(fletcher, player, false))
+	        .add(new EnableInput())
+	        //.add(new FadeOut())
+	       // .add(new FadeIn())
+	        //.add(new ShowNarration())
+	       // .add(new NarrationSequence("Here, the fletcher puts you through trials upon trials of target shooting. "
+	         //   + "He even comes up with more and more convoluted ways of testing your accuracy. "
+	           // + "Eventually, you're able to outshoot even him in the trials. You have mastered the art."))
+	        //.add(new WaitForNarration())  // Wait for player to close narration
+	        .add(new HideNarration())
+	        .add(new FadeOut())
+	        .add(new FadeIn())
+	        .add(new DialogSequence(fletcher, player,
+	            List.of("What do you master next?"),
+	            List.of("Arrow Making", "Im Ready")));
+	}
+	@BuilderMethod
+	public void planNar() {
+		var planNar = get(MyNodeLabels.planNar.toString());
+		planNar.clearSequence();
+	    planNar.add(new HideMenu())
+	        .add(new HideDialog())
+	        .add(new HideNarration())
+	        .add(new FadeOut())
+	        .add(new SetPosition(player, darTable, "Door"))
+	        .add(new FadeIn());
+		planNar.add(new NarrationSequence("You, the fletcher, and the rest of the Round Table devise your plan. "
+        		+ "You will sneak into a royal wedding party at the castle. There, you will take the king out from afar and get out with haste. You need to scale the wall and take your shot"));
+	}
+	
+	@BuilderMethod
+	public void leaveForPlan() {
+		var leaveforPlan = get(MyNodeLabels.leaveForPlan.toString());
+		leaveforPlan.add(new HideNarration());
+		
+	}
 	@BuilderMethod
 	public void thePlan() {
    		var planNode = get(MyNodeLabels.thePlan.toString());
@@ -465,19 +564,35 @@ public class MyNodeBuilder extends NodeBuilder {
 }
 
 	
-	
+	@BuilderMethod
 	public void insideTheCastleHalls() {
     		var castleNode = get(MyNodeLabels.insideTheCastleHalls.toString());
     		castleNode.clearSequence();
-		castleNode.add(new HideMenu())
-             		.add(new FadeIn())
-              		.add(new NarrationSequence("After climbing the wall, you search for a location from which you can take your lethal shot. "
-			+ "However, not long after your arrival, an arrow grazes your head. You look for its origin and find an occupied archer tower. "
-                  	+ "You swiftly draw your bow and strike the archer in the head before he can even get his second shot off. "
-                  	+ "It is from the archer tower that you will take your shot for glory."))
-              		.add(new DialogSequence(player, player,
-                  	List.of("You're in position. Are you ready?"),
-                  	List.of("From the archer tower")));
+    		//castleNode.add(new FadeOut());
+    		castleNode.add(new CreateAll(List.of(castleHall)))
+    		
+    		.add(new EnableInput())
+    		.add(new CreateCharacterSequence(noble1))
+    		.add(new SetPosition(noble1,castleHall,"Gate"))
+    		.add(new CreateCharacterSequence(noble2))
+    		.add(new CreateCharacterSequence(noble3))
+    		.add(new SetPosition(noble2,castleHall,"LeftThrone"))
+    		.add(new SetPosition(noble3, castleHall, "RightDoor"))
+    		.add(new CreateCharacterSequence(arthur))
+    		.add(new SetPosition(arthur, castleHall,"Throne"))
+    		.add(new SetPosition(player,castleHall,"Table"))
+    		.add(new FadeIn());
+}
+	
+@BuilderMethod
+public void snipe() {
+	
+	var snipeNode = get(MyNodeLabels.snipe.toString());
+	snipeNode
+	//snipeNode.add(new Unpocket(player,bow))
+	.add(new Dance(player)).add(new SetCameraFocus(arthur)).add(new Die(arthur))
+	.add(new SetCameraFocus(player)).add(new EnableInput());
+	
 }
 	@BuilderMethod
 	public void fromTheArcherTower() {
@@ -520,6 +635,7 @@ public class MyNodeBuilder extends NodeBuilder {
                 List.of("You escape through the madness."),
                 List.of("Return to the Dark Table")));
 }
+
 	
 		
 
@@ -590,4 +706,3 @@ public class MyNodeBuilder extends NodeBuilder {
 	}
 }
 		
-			
