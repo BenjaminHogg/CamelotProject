@@ -641,68 +641,91 @@ public void snipe() {
 
 	//Christian Maron
 	@BuilderMethod 
+	
 	public void Potion(){
 		var potion = get(MyNodeLabels.potion.toString());
-		potion.add(new DialogSequence(bandit3, player, List.of("You chose the potion as your means of killing Merlin. Ideally you hope to concoct a potion that deals devastating damage in the least amount of time possible. In order to master the art of brewing you should take up an apprenticeship with the local warlock"),List.of("")));
-	}
-		@BuilderMethod 		
-	public void DarkArts(){
+		potion.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new HideDialog())
+		.add(new DialogSequence(bandit3, player, List.of(
+		"In order to master the art of brewing you should take up an apprenticeship "
+		+ "with the local warlock"),List.of("Take up apprenticeship")));
+		}
+		@BuilderMethod
+		public void DarkArts(){
 		var darkArts = get(MyNodeLabels.darkArts.toString());
-		darkArts.add(new DialogSequence(bandit3, player, List.of("You chose the dark arts as your means of killing Merlin. In order to develop such skills in a timely manner, you must take an appremticeship with the local warlock."),List.of("Next")));
-			}
-		
-	@BuilderMethod 	
-    public void PotionApprenticeship(){
+		darkArts
+		.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new DialogSequence(bandit3, player, List.of("In order to develop such skills in a timely manner, "
+		+ "you must take an apprenticeship with the local warlock."),List.of("Take up apprenticeship")));
+		}
+		@BuilderMethod
+		public void PotionApprenticeship(){
 		var potionApprenticeship = get(MyNodeLabels.potionApprenticeship.toString());
 		potionApprenticeship.add(new CreateCharacterSequence(potionWarlock))
+		.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new WalkTo(player, darTable, "Door"))
+		.add(new FadeOut())
 		.add(new CreateAll(List.of(potion,potionRoom)))
-		.add(new SetPosition(player, potionRoom, "Bar"))
-		.add(new SetPosition(potionWarlock, potionRoom, "Backdoor"))
+		.add(new SetPosition(player, potionRoom, "Fireplace"))
+		.add(new SetPosition(potionWarlock, potionRoom, "Bookshelf"))
+		.add(new Face(player, potionWarlock))
+		.add(new FadeIn())
 		.add(new Give(potionWarlock, potion, player))
-		.add(new DialogSequence(potionWarlock,player, List.of("You are ready"),List.of("Next")));
-	}
-	
-	@BuilderMethod 		
-	public void DarkArtsApprenticeship() {
+		.add(new DialogSequence(potionWarlock,player, List.of("You are ready"),List.of("Go to the battle")));
+		}
+		@BuilderMethod
+		public void DarkArtsApprenticeship() {
 		var darkArtsApprenticeship = get(MyNodeLabels.darkArtsApprenticeship.toString());
 		darkArtsApprenticeship.add(new CreateCharacterSequence(darkArtsWarlock))
+		.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new WalkTo(player, darTable, "Door"))
+		.add(new FadeOut())
 		.add(new CreateAll(List.of(wand,darkArtsRoom)))
-		.add(new SetPosition(player, darkArtsRoom, "Bar"))
-		.add(new SetPosition(darkArtsWarlock, darkArtsRoom, "Backdoor"))
+		.add(new SetPosition(player, darkArtsRoom, "Fireplace"))
+		.add(new SetPosition(darkArtsWarlock, darkArtsRoom, "Bookshelf"))
+		.add(new Face(player, darkArtsWarlock))
+		.add(new FadeIn())
 		.add(new Give(darkArtsWarlock, wand, player))
-		.add(new DialogSequence(darkArtsWarlock, player, List.of("You are ready"),List.of("Next")));
+		.add(new DialogSequence(darkArtsWarlock, player, List.of("You are ready"),List.of("Go to the battle")));
 		}
-	@BuilderMethod 
-	public void PotionBattle(){
+		@BuilderMethod
+		public void PotionBattle(){
 		var potionBattle = get(MyNodeLabels.potionBattle.toString());
 		potionBattle.add(new CreateAll(List.of(potionBattleArea)))
+		.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new WalkTo(player, potionRoom, "Door"))
+		.add(new FadeOut())
 		.add(new CreateCharacterSequence(merlin))
-		.add(new SetPosition(merlin, potionBattleArea, "Well"))
+		.add(new SetPosition(merlin, potionBattleArea, "EastEnd"))
 		.add(new SetPosition(player, potionBattleArea, "DirtPile"))
-		.add(new Attack(player, merlin, false))
+		.add(new FadeIn())
+		.add(new Attack(merlin, player, false))
 		//.add(new Effect(merlin, potionEffect))
-		.add(new Die(merlin));
-			}
-	@BuilderMethod 
-	public void DarkArtsBattle(){
+		.add(new Die(player))
+		.add(new NarrationSequence("Game Over"));
+		}
+		@BuilderMethod
+		public void DarkArtsBattle(){
 		var darkArtsBattle = get(MyNodeLabels.darkArtsBattle.toString());
 		darkArtsBattle.add(new CreateAll(List.of(darkArtsBattleArea)))
+		.add(new HideDialog())
+		.add(new DisableInput())
+		.add(new WalkTo(player, darkArtsRoom, "Door"))
+		.add(new FadeOut())
 		.add(new CreateCharacterSequence(merlin))
-		.add(new SetPosition(merlin, darkArtsBattleArea, "Well"))
+		.add(new SetPosition(merlin, darkArtsBattleArea, "EastEnd"))
 		.add(new SetPosition(player, darkArtsBattleArea, "DirtPile"))
-		.add(new CreateAll(List.of(wand)))
+		.add(new CreateAll(List.of(wand1)))
+		.add(new FadeIn())
 		.add(new Draw(merlin, wand))
-		.add(new Attack(merlin, player, true))
-		.add(new Cast(player, merlin))
-		//.add(new Effects(merlin, wandEffect))
-		.add(new Die(merlin));
-		
-			}
-	@BuilderMethod 
-	public void MerlinDeath(){
-		var merlinDeath = get(MyNodeLabels.merlinDeath.toString());
-		merlinDeath.add(new Attack(player, merlin, false))
-		.add(new DialogSequence(player, merlin, List.of("It has been done"),List.of("Next")));
-	}
+		.add(new Attack(merlin, player, false))
+		.add(new Die(player))
+		.add(new NarrationSequence("Game Over"));
+		}
 }
 		
