@@ -48,4 +48,10 @@ public enum MyNodeLabels{
 	waraxe,
 	chainmace,
 	agilityAndStealth, armoryChoices, leaveArm, leaveforDuel, theend, givedagger, leaveArmDagger, talktomerc, walktotrain, leavecamp, merctraining2,
+	fletcherNar,
+	arrowMakingNar,
+	marksmanshipNar,
+	leaveForPlan,
+	planNar,
+	snipe
 }
